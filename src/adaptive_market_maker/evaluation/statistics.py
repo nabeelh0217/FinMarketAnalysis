@@ -1,10 +1,14 @@
-"""Dependence-aware uncertainty: moving-block bootstrap for means and paired differences.
+"""Dependence-aware uncertainty: circular block bootstrap for means and paired differences.
 
-P&L is aggregated into fixed clock-time intervals (``bootstrap_block_s``) per session; resampling moves
+P&L is aggregated into fixed clock-time intervals (``bootstrap_block_s``) per session; resampling draws
 blocks of ``blocks_per_draw`` consecutive intervals to keep short-range autocorrelation (inventory carried
-between intervals) inside each draw. Blocks never span two sessions. This captures dependence up to the
-block length only; regime-level dependence across sessions is not captured, and with few intervals the
-interval estimate itself is noisy, which is reported via ``n_intervals``.
+between intervals) inside each draw. Blocks wrap around *within* a session (Politis & Romano's circular
+block bootstrap) and never span two sessions. Wrapping gives every interval the same inclusion probability;
+a plain moving-block bootstrap under-samples the first and last intervals of each session, which here are
+systematically different (the last one is the flatten window), and biases the bootstrap mean.
+
+This captures dependence up to the block length only; regime-level dependence across sessions is not
+captured, and with few intervals the interval estimate itself is noisy, reported via ``n_intervals``.
 """
 
 from __future__ import annotations
@@ -13,6 +17,7 @@ import numpy as np
 
 
 def _blocks(groups: list[np.ndarray], b: int) -> list[np.ndarray]:
+    """All circular blocks of length ``b`` within each group (a short group is one whole block)."""
     out = []
     for g in groups:
         n = g.size
@@ -21,8 +26,9 @@ def _blocks(groups: list[np.ndarray], b: int) -> list[np.ndarray]:
         if n <= b:
             out.append(g)
             continue
-        for s in range(n - b + 1):
-            out.append(g[s : s + b])
+        offsets = np.arange(b)
+        for s in range(n):
+            out.append(g[(s + offsets) % n])
     return out
 
 

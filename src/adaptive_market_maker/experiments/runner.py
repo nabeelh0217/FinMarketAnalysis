@@ -418,7 +418,12 @@ class ExperimentRunner:
             "dataset_id": cfg.data.dataset_id,
             "source": cfg.data.source,
             "sessions": [
-                {"session_id": s.session_id, "rows": len(s), "observable_states": int(s.last_in_group.sum())}
+                {
+                    "session_id": s.session_id,
+                    "rows": len(s),
+                    "observable_states": int(s.last_in_group.sum()),
+                    "mid_drift_ticks": float(s.mid_ticks[s.valid_book][-1] - s.mid_ticks[s.valid_book][0]),
+                }
                 for s in ctx.dataset
             ],
             "manifests": read_manifests(cfg.data),
@@ -831,6 +836,14 @@ class ExperimentRunner:
                 }
         self.results["sensitivity"] = out
 
+    def _train_mean_vol(self) -> float:
+        vals = []
+        for seg in by_role(self.ctx.segments, "train"):
+            df = self.ctx.bundles[seg.session_id].features.df
+            m = seg.contains(df["ts_ns"].to_numpy()) & (df["warm"] & df["valid_book"]).to_numpy()
+            vals.append(df.loc[m, "vol_ticks_sqrt_s"].to_numpy())
+        return float(np.mean(np.concatenate(vals))) if vals else 0.1
+
     def _ablations(self) -> None:
         exp = self.exp
         test = by_role(self.ctx.segments, "test")
@@ -840,7 +853,11 @@ class ExperimentRunner:
             "no_alpha_guard": {"alpha_guard_ticks": None},
             "no_alpha_shift": {"alpha_weight": 0.0},
             "no_inventory_skew": {"use_inventory_skew": False},
-            "no_vol_adaptation": {"use_vol_adaptation": False},
+            # constant sigma at the training-period average, so the skew keeps its typical size
+            "no_vol_adaptation": {
+                "use_vol_adaptation": False,
+                "static_vol_ticks_per_sqrt_s": self._train_mean_vol(),
+            },
         }
         jobs, labels = [], []
         for name in exp.ablations:
@@ -870,10 +887,22 @@ class ExperimentRunner:
                     for seg in test
                 ]
                 labels += [name] * len(test)
+            elif name == "placebo_alpha":
+                # the model's own alpha, circularly shifted by half a session: same distribution and
+                # autocorrelation, no alignment with the market. It should not beat B; if it did, the
+                # engine would be rewarding something other than information.
+                for sid in self.ctx.bundles:
+                    a = self.ctx.signals[("default", sid)].alpha
+                    self.ctx.signals[("placebo", sid)] = self.ctx.base_signals(sid, np.roll(a, a.size // 2))
+                jobs += [
+                    {"cfg": self.final_cfg, "segment": seg, "strategy": "adaptive", "signal_key": "placebo"}
+                    for seg in test
+                ]
+                labels += [name] * len(test)
             elif name.startswith("drop:"):
-                group = name.split(":", 1)[1]
-                sk = f"drop:{group}"
-                tm = train_models(self.ctx, drop_groups=[group], candidates=[self.selected_model_name])
+                groups = name.split(":", 1)[1].split("+")
+                sk = name
+                tm = train_models(self.ctx, drop_groups=groups, candidates=[self.selected_model_name])
                 alphas = alpha_arrays(self.ctx, tm["models"][self.selected_model_name])
                 for sid in self.ctx.bundles:
                     self.ctx.signals[(sk, sid)] = self.ctx.base_signals(sid, alphas[sid])

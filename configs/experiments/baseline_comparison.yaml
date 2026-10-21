@@ -33,7 +33,7 @@ experiment:
     models.labels.horizon_ms: [250, 1000, 5000]
     backtest.decision_min_interval_ms: [0, 100, 1000]
     strategies.*.half_spread_ticks: [0.5, 1.5]
-  ablations: [no_alpha, no_alpha_shift, no_alpha_guard, no_inventory_skew, no_vol_adaptation, fill_aware_glft,
-              "drop:book_l1", "drop:microprice", "drop:multi_level", "drop:order_flow", "drop:trade_flow",
+  ablations: [no_alpha, placebo_alpha, no_alpha_shift, no_alpha_guard, no_inventory_skew, no_vol_adaptation, fill_aware_glft,
+              "drop:book_l1", "drop:microprice", "drop:multi_level", "drop:order_flow", "drop:trade_flow", "drop:order_flow+trade_flow+activity",
               "drop:price_history"]
   n_jobs: 4

@@ -14,5 +14,5 @@ experiment:
   sensitivity:
     latency_us: [0, 250, 5000]
     execution.fill_preset: [conservative, central, optimistic]
-  ablations: [no_alpha, no_alpha_guard]
+  ablations: [no_alpha, placebo_alpha, no_alpha_guard]
   n_jobs: 4

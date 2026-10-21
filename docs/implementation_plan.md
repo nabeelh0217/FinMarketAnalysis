@@ -116,14 +116,37 @@ src/adaptive_market_maker/
 ## 5. Checklist
 
 - [x] Phase 0 — environment inspected, plan written
-- [ ] Phase 1 — skeleton, config, CLI, logging, tests
-- [ ] Phase 2 — synthetic market, order lifecycle, queue tracker, exchange, ledger, reconciliation
-- [ ] Phase 3 — LOBSTER adapter, normalization, manifest, validation, integrity checks
-- [ ] Phase 4 — causal features, labels, leakage/perturbation tests
-- [ ] Phase 5 — baselines, logistic, HGB, calibration, alpha mapping, chronological evaluation
-- [ ] Phase 6 — fixed-spread strategy, engine, integration test
-- [ ] Phase 7 — inventory-aware (AS + GLFT)
-- [ ] Phase 8 — alpha-aware strategy, isolated alpha contribution
-- [ ] Phase 9 — fill-probability model, fill presets in reports
-- [ ] Phase 10 — out-of-sample comparison, ablations, sensitivity, block bootstrap
-- [ ] Phase 11 — report, docs, reproduction instructions
+- [x] Phase 1 — skeleton, config (pydantic, strict), argparse CLI, structured logging, tests
+- [x] Phase 2 — synthetic order-level market, order lifecycle, queue tracker, exchange, integer ledger, reconciliation
+- [x] Phase 3 — LOBSTER adapter (exact time parsing, row-count check), normalization, manifest (sha256), validation,
+      event-by-event book-transition reconciliation. **Real files not obtainable in the sandbox**; exercised on
+      LOBSTER-layout synthetic files; `pytest -m needs_lobster` runs on the real sample once present.
+- [x] Phase 4 — causal features on observable states, as-of labels, future-perturbation tests
+- [x] Phase 5 — prior / logistic / HGB, temperature calibration, alpha mapping, purged chronological evaluation
+- [x] Phase 6 — fixed-spread strategy, latency-aware engine, integration test
+- [x] Phase 7 — inventory-aware (AS rolling / session-end, GLFT), risk limits (worst-case inventory)
+- [x] Phase 8 — alpha-aware strategy; C inherits B's parameters so C − B isolates alpha (tested: C without alpha ≡ B)
+- [x] Phase 9 — shadow-order fill model (logistic + Kaplan–Meier + intensity fit), three fill presets
+- [x] Phase 10 — out-of-sample comparison, paired block bootstrap (raw and risk-adjusted), ablations, sensitivity
+- [x] Phase 11 — report generator, docs, reproduction instructions
+- [ ] **Blocked:** run `lobster_msft.yaml` / `lobster_aapl.yaml` on the real sample (needs lobsterdata.com access)
+
+## 6. Phase notes
+
+**Phases 1–3.** Added `config.py`, `types.py`, `data/` (base, lobster, normalize, synthetic, validate, manifest,
+prepare), `orderbook/validation.py`. Gate: package installs, `amm --help` works; every synthetic message
+reconciles against its book snapshot; corrupted books raise `DataIntegrityError`.
+
+**Phase 2 finding.** The first synthetic calibration had almost no adverse selection (fixed-spread maker's
+30 s realized spread 0.36 of a 0.46-tick effective half-spread), which made naive market making look
+unrealistically easy. Informed-flow intensity and latent-value volatility were raised until adverse selection
+consumed ~80% of the half-spread at 30 s, closer to what is documented for large-tick equities. The `null`
+scenario keeps total aggressive flow equal (3/s) but uninformed.
+
+**Phases 4–9.** Features, labels, models, fill model, strategies, risk, engine. Gates: hand-calculated feature,
+OFI, microprice, AS/GLFT, ledger and markout tests; perturbing future events leaves earlier features, fills and
+decisions unchanged; no fill precedes order arrival; inventory never exceeds the limit; replay is
+deterministic; conservative ≤ central ≤ optimistic fill counts.
+
+**Phases 10–11.** Experiment runner, registry, statistics, plots, report, docs. Results: see README and
+`reports/`.

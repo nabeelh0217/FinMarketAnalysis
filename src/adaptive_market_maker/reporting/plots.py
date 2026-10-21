@@ -112,12 +112,13 @@ def market_figures(
     bid = session.bid_px[rows, 0] / session.price_scale
     ask = session.ask_px[rows, 0] / session.price_scale
     clock = pd.to_datetime(start_ns, unit="ns").strftime("%H:%M:%S")
+    span = f"{t[-1] / 60:.1f} min" if t[-1] >= 60 else f"{t[-1]:.0f} s"
 
     fig, ax = plt.subplots(figsize=(8, 3.2))
     ax.step(t, ask, where="post", color=SERIES[7], label="best ask")
     ax.step(t, bid, where="post", color=SERIES[0], label="best bid")
     ax.set(
-        title=f"Best bid and ask, {session.session_id}, {minutes:g} min from {clock}",
+        title=f"Best bid and ask, {session.session_id}, {span} from {clock}",
         xlabel="seconds into window",
         ylabel="price ($)",
     )
@@ -542,7 +543,10 @@ def make_all(exp_dir: Path) -> dict:
         ds = load_dataset(cfg.data, prepare_if_missing=False)
         session = ds.by_id(seg["session_id"])
         ft = build_features(session, cfg.features)
-        files.update(market_figures(session, ft.df, out, synthetic, int(seg["start_s"] * 1e9) + int(300e9)))
+        offset_s = max(
+            min(300.0, (seg["duration_s"] - 120.0) / 2), 0.0
+        )  # a 2-minute window inside the segment
+        files.update(market_figures(session, ft.df, out, synthetic, int((seg["start_s"] + offset_s) * 1e9)))
     except (FileNotFoundError, StopIteration, KeyError) as e:  # data may live on another machine
         files["market_figures_skipped"] = str(e)
     return files

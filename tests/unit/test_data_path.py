@@ -101,3 +101,18 @@ def test_prepare_writes_parquet_manifest_and_validation(synthetic_cfg):
     assert m["synthetic"] is True and len(m["raw_files"][0]["sha256"]) == 64
     assert m["row_count"] == len(ds.sessions[0])
     assert m["validation_status"].startswith("PASSED")
+
+
+def test_synthetic_generator_has_no_directional_bias():
+    from adaptive_market_maker.config import DataConfig
+    from adaptive_market_maker.data.synthetic import SyntheticMarket
+
+    cfg = DataConfig(source="synthetic", dataset_id="t", raw_dir="x", synthetic={"duration_s": 240})
+    buyer_share = []
+    for seed in range(12):
+        m = SyntheticMarket(cfg.synthetic, 10, 100, seed=500 + seed)
+        m.initialize(3000)
+        m.run(cfg.open_ns, 240)
+        et, side = np.array(m.out_type), np.array(m.out_side)
+        buyer_share.append(np.mean(side[et == 4] == -1))  # execution of a sell order = buyer-initiated
+    assert abs(np.mean(buyer_share) - 0.5) < 0.02

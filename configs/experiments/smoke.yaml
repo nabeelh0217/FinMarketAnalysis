@@ -17,5 +17,5 @@ experiment:
   sensitivity:
     latency_us: [0, 1000]
     execution.fill_preset: [conservative, optimistic]
-  ablations: [no_alpha, "drop:order_flow"]
+  ablations: [no_alpha, placebo_alpha, "drop:order_flow"]
   n_jobs: 1

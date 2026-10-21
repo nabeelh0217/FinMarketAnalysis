@@ -94,8 +94,11 @@ def build_report(exp_dir: Path) -> Path:
     full_ll = abl_pred.get("full_model", {}).get("test_log_loss")
     flow_deltas = {
         g: (abl_pred[g]["test_log_loss"] - full_ll)
-        for g in ("drop:order_flow", "drop:trade_flow")
-        if g in abl_pred and abl_pred[g].get("test_log_loss") is not None and full_ll is not None
+        for g in abl_pred
+        if g.startswith("drop:")
+        and ("order_flow" in g or "trade_flow" in g)
+        and abl_pred[g].get("test_log_loss") is not None
+        and full_ll is not None
     }
     h["H2"] = (_verdict(gain.get("ci_low"), gain.get("ci_high")), gain)
     c3 = comp("adaptive", "inventory_aware")
@@ -144,7 +147,7 @@ def build_report(exp_dir: Path) -> Path:
     add(
         "\nNet P&L is after modelled fees and rebates with any residual inventory liquidated at the far touch "
         "(walking visible depth, taker fee). Fees below zero are net rebates. Confidence intervals come from a "
-        f"moving-block bootstrap of {_f(test['interval_s'], 0)}-second P&L intervals.\n"
+        f"circular block bootstrap of {_f(test['interval_s'], 0)}-second P&L intervals.\n"
     )
     add("**Hypothesis verdicts (mechanical, 95% intervals):**\n")
     add(
@@ -248,11 +251,21 @@ def build_report(exp_dir: Path) -> Path:
                 s["session_id"],
                 _f(s["rows"]),
                 _f(s["observable_states"]),
+                _f(s.get("mid_drift_ticks"), 1),
                 m.get("validation_status", "n/a"),
                 ", ".join(m.get("validation_failed_checks", [])) or "none",
             ]
         )
-    add(_table(["session", "messages", "observable states", "validation", "failed/flagged checks"], rows))
+    add(
+        _table(
+            ["session", "messages", "observable states", "mid drift (ticks)", "validation", "flagged checks"],
+            rows,
+        )
+    )
+    add(
+        "\nMid drift (last − first mid) matters for reading side-specific markouts: in a session that drifts "
+        "down, buy fills look adversely selected and sell fills look favourable, independent of the strategy.\n"
+    )
     add(
         "\nEvery book-changing message was reconciled against the source book snapshot (check "
         "`book_transitions_consistent`); critical failures stop the pipeline. Messages sharing one timestamp are "
@@ -329,7 +342,7 @@ def build_report(exp_dir: Path) -> Path:
                 "balanced acc.",
                 "Brier",
                 "AUC up",
-                "AUC dir. | move",
+                "AUC dir. given move",
                 "IC (Spearman)",
             ],
             rows,
@@ -548,10 +561,34 @@ def build_report(exp_dir: Path) -> Path:
         ]
         add(_table(["ablation", "test net P&L", "Δ vs full C", "fills", "mean abs inv."], rows))
         add(
-            "\n`no_alpha` reduces C to B exactly (same parameters); `fill_aware_glft` replaces B's fixed half-spread "
-            "with GLFT quotes using the estimated fill intensity (H5); `drop:<group>` retrains the selected model without "
-            "that feature group and re-runs C.\n"
+            "\n`no_alpha` reduces C to B exactly (same parameters); `no_vol_adaptation` holds σ at its training-period "
+            "mean; `fill_aware_glft` replaces B's fixed half-spread with GLFT quotes using the estimated fill intensity "
+            "(H5); `drop:<groups>` retrains the selected model without those feature groups and re-runs C.\n"
         )
+        plc, b_pnl = abl["trading"].get("placebo_alpha"), bys.get("inventory_aware", {}).get("net_pnl_total")
+        if plc and full is not None and b_pnl is not None:
+            ok = plc["net_pnl"] <= b_pnl
+            add(
+                f"**Placebo check.** C fed its own alpha shifted by half a session (same distribution, no "
+                f"alignment with the market) earned {_f(plc['net_pnl'], money=True)}, versus "
+                f"{_f(b_pnl, money=True)} for B (no alpha) and {_f(full, money=True)} for C with the real alpha. "
+                + (
+                    "The placebo does not beat B, so the engine is not rewarding alpha-shaped noise.\n"
+                    if ok
+                    else "**The placebo beats B: the alpha component's gains may not come from information. "
+                    "Investigate before trusting H3.**\n"
+                )
+            )
+        vacuous = [
+            n for n, d in abl["trading"].items() if full is not None and abs(d["net_pnl"] - full) < 1e-9
+        ]
+        if vacuous:
+            add(
+                "Identical to the full strategy (the component is inactive in the validation-selected "
+                "configuration, so the ablation removes nothing): "
+                + ", ".join(f"`{n}`" for n in vacuous)
+                + ".\n"
+            )
     if abl.get("prediction"):
         rows = [
             [
@@ -632,7 +669,9 @@ def build_report(exp_dir: Path) -> Path:
         )
     )
     if radj:
-        add("\nRisk-adjusted (mean / std of interval net P&L, not annualised), paired block bootstrap:\n")
+        add(
+            "\nRisk-adjusted (mean / std of interval net P&L, not annualised), paired circular block bootstrap:\n"
+        )
         add(
             _table(
                 ["comparison", "first", "second", "difference", "95% low", "95% high", "verdict"],
@@ -653,8 +692,8 @@ def build_report(exp_dir: Path) -> Path:
     n_trials = R.get("n_backtests", 0)
     n_val = sum(d["n_candidates"] for d in R.get("selection", {}).values())
     add(
-        f"\nIntervals are {_f(test['interval_s'], 0)} s of clock time within a session; moving blocks keep consecutive "
-        "intervals together and never span sessions. Dependence longer than a block, and differences between sessions as "
+        f"\nIntervals are {_f(test['interval_s'], 0)} s of clock time within a session; circular blocks of consecutive "
+        "intervals wrap within a session and never span sessions. Dependence longer than a block, and differences between sessions as "
         "a whole, are not captured.\n\n**Multiple testing.** "
         f"{n_val} parameter candidates were evaluated on validation and {n_trials} backtests were run overall. Only the "
         "pre-declared final comparisons above are confirmatory; sensitivity and ablation results are exploratory, and "

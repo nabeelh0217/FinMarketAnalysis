@@ -229,3 +229,14 @@ def test_markout_decomposition_hand_calculated():
     assert mk["realized_spread_1000ms"].iloc[0] == pytest.approx(-0.5)  # as-of mid at 2.0 s is 2999.5
     assert mk["adverse_sel_1000ms"].iloc[0] == pytest.approx(1.0)
     assert np.isnan(mk["realized_spread_5000ms"].iloc[0])  # beyond the data: excluded, not guessed
+
+
+def test_circular_blocks_give_every_interval_equal_weight():
+    """The moving-block scheme under-samples a session's first/last interval; circular blocks must not."""
+    from adaptive_market_maker.evaluation.statistics import _blocks
+
+    g = np.arange(10)
+    counts = np.bincount(np.concatenate(_blocks([g, g[:2]], 3)), minlength=10)
+    assert (counts[2:] == 3).all() and (
+        counts[:2] == 4
+    ).all()  # 3 per index, +1 from the short whole-group block
