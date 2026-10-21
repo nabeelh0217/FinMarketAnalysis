@@ -12,7 +12,7 @@ from pathlib import Path
 
 import numpy as np
 
-from adaptive_market_maker.reporting.plots import STRATEGY_LABEL, make_all
+from adaptive_market_maker.reporting.plots import REGIME_ORDER, STRATEGY_LABEL, make_all
 
 
 def _f(x, nd=2, money=False, pct=False) -> str:
@@ -45,6 +45,19 @@ def _verdict(ci_low, ci_high, direction: int = 1) -> str:
 
 def _name(s: str) -> str:
     return STRATEGY_LABEL.get(s, s)
+
+
+def _config_path_for(exp_id: str) -> str:
+    """The experiment config file declaring this id (falls back to the saved snapshot)."""
+    import yaml
+
+    for p in sorted(Path("configs/experiments").glob("*.yaml")):
+        try:
+            if (yaml.safe_load(p.read_text()) or {}).get("experiment", {}).get("id") == exp_id:
+                return str(p)
+        except yaml.YAMLError:
+            continue
+    return f"reports/experiments/{exp_id}/config_snapshot.yaml"
 
 
 def build_report(exp_dir: Path) -> Path:
@@ -172,7 +185,28 @@ def build_report(exp_dir: Path) -> Path:
         f"{_f(bys.get('fixed_spread', {}).get('mean_abs_inventory'), 0)} → "
         f"{_f(bys.get('inventory_aware', {}).get('mean_abs_inventory'), 0)} shares."
     )
-    add("- **H5–H7**: see sections 12–13 (point estimates and sensitivity; no interval-based verdict).\n")
+    abl_tr = R.get("ablations", {}).get("trading", {})
+    glft, b_tot = abl_tr.get("fill_aware_glft"), bys.get("inventory_aware", {}).get("net_pnl_total")
+    if glft and b_tot is not None:
+        add(
+            f"- **H5** (fill-aware quoting): GLFT quotes with the estimated fill intensity earned "
+            f"{_f(glft['net_pnl'], money=True)} vs {_f(b_tot, money=True)} for B "
+            f"({glft['n_fills']:,} vs {bys['inventory_aware']['n_fills_total']:,} fills); point estimate only."
+        )
+    reg_c = bys.get("adaptive", {}).get("by_regime", {})
+    reg_b = bys.get("inventory_aware", {}).get("by_regime", {})
+    if reg_c and reg_b:
+        parts = []
+        for dim in ("volatility", "spread", "flow"):
+            for lv, e in reg_c.get(dim, {}).items():
+                if lv in reg_b.get(dim, {}):
+                    parts.append(f"{dim}={lv}: {_f(e['pnl_mid'] - reg_b[dim][lv]['pnl_mid'], 0, money=True)}")
+        add(
+            "- **H6** (regime dependence), C − B mark-to-mid P&L by regime: "
+            + "; ".join(parts)
+            + " (descriptive)."
+        )
+    add("- **H7** (robustness): see section 13 for every sensitivity grid and where results change sign.\n")
 
     # ------------------------------------------------------------------ 2. questions
     add("## 2. Research question and hypotheses\n")
@@ -364,6 +398,19 @@ def build_report(exp_dir: Path) -> Path:
         ]
         add(_table(["regime dimension", "regime", "n", "log loss", "accuracy", "AUC up"], rows))
         add("")
+    bys_pred = pred.get("selected_by_session", {})
+    if bys_pred:
+        add("Selected model by test session:\n")
+        add(
+            _table(
+                ["session", "n", "log loss", "accuracy", "AUC up"],
+                [
+                    [k, _f(m["n"]), _f(m["log_loss"], 4), _f(m["accuracy"], 3), _f(m["auc_up_vs_rest"], 3)]
+                    for k, m in bys_pred.items()
+                ],
+            )
+        )
+        add("")
     fig("alpha_deciles", "Realized mid change by decile of the model's alpha (test); bars show ±1.96 SE.")
     fig("reliability", "Reliability diagram for P(up) on the test period.")
 
@@ -542,6 +589,24 @@ def build_report(exp_dir: Path) -> Path:
             rows.append([_name(s), side, _f(d["n"]), _f(d["eff_half_spread_ticks"], 3), _f(d[last], 3)])
     add(_table(["strategy", "side", "fills", "e (ticks)", "RS longest h (ticks)"], rows))
     add("")
+    mbr = {st: bys[st].get("markouts_by_regime", {}) for st in strats}
+    if any(mbr.values()):
+        add(
+            "\nMaker realized spread at the longest horizon by causal regime at the time of the fill (ticks):\n"
+        )
+        rows = []
+        for dim in ("volatility", "spread", "flow", "depth"):
+            present = {lv for d in mbr.values() for lv in d.get(dim, {})}
+            levels = [lv for lv in REGIME_ORDER if lv in present] + sorted(present - set(REGIME_ORDER))
+            for lv in levels:
+                row = [dim, lv]
+                for st in strats:
+                    e = mbr[st].get(dim, {}).get(lv)
+                    rk = next((k for k in (e or {}) if k.startswith("realized_spread_")), None)
+                    row.append(f"{_f(e[rk], 3)} (n={_f(e['n'])})" if e and rk else "n/a")
+                rows.append(row)
+        add(_table(["dimension", "regime"] + [_name(st) for st in strats], rows))
+        add("")
     fig("markouts", "Maker realized spread by horizon.")
 
     # ------------------------------------------------------------------ 12. ablations
@@ -765,7 +830,7 @@ def build_report(exp_dir: Path) -> Path:
     add("## 19. Reproduction\n")
     add(
         '```bash\npip install -e ".[dev]"\npytest\n'
-        f"amm experiment run --config <the config used for `{exp['id']}`> --overwrite\n"
+        f"amm experiment run --config {_config_path_for(exp['id'])} --overwrite\n"
         f"amm report --experiment {exp['id']}\n```\n\n"
         "The exact configuration is saved next to this report as `config_snapshot.yaml` (as run) and "
         "`config_selected.yaml` (with validation-selected parameters); data provenance is in `manifests.json`.\n"

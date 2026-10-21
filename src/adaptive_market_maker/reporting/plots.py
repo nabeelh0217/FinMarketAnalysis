@@ -395,7 +395,8 @@ def robustness_figures(results: dict, out: Path, synthetic: bool) -> dict:
         xs_raw = list(pts)
         strats = list(next(iter(pts.values())))
         numeric = all(_is_number(x) for x in xs_raw)
-        xs = [float(x) for x in xs_raw] if numeric else list(range(len(xs_raw)))
+        # only latency is plotted on a (symlog) value axis; other grids are discrete tested values, evenly spaced
+        xs = [float(x) for x in xs_raw] if (numeric and log) else list(range(len(xs_raw)))
         for s in strats:
             ys = [pts[x][s]["net_pnl"] for x in xs_raw]
             ax.plot(
@@ -406,10 +407,14 @@ def robustness_figures(results: dict, out: Path, synthetic: bool) -> dict:
                 color=STRATEGY_COLOR.get(s, INK),
                 label=STRATEGY_LABEL.get(s, s),
             )
-        if not numeric:
-            ax.set_xticks(xs, xs_raw)
         if log:
             ax.set_xscale("symlog", linthresh=50)
+        # ticks only at the tested values, so labels never collide or imply untested points
+        ax.set_xticks(
+            xs if not log else [max(v, 1e-1) for v in xs],
+            [f"{x:g}" if numeric else x for x in ([float(v) for v in xs_raw] if numeric else xs_raw)],
+        )
+        ax.minorticks_off()
         ax.axhline(0, color=AXIS, linewidth=0.8)
         ax.set(title=title, xlabel=xlabel, ylabel="test net P&L ($)")
 
@@ -450,7 +455,7 @@ def robustness_figures(results: dict, out: Path, synthetic: bool) -> dict:
         fig, axes = plt.subplots(rows, cols, figsize=(11, 2.9 * rows), sharey=True)
         axes = np.atleast_1d(axes).ravel()
         for ax, k in zip(axes, others):
-            line_panel(ax, k, k.replace("strategies.*.", "all strategies: "), "value")
+            line_panel(ax, k, k.replace("strategies.*.", "all strategies: "), "tested value")
             ax.title.set_fontsize(9)
         for ax in axes[n:]:
             ax.set_visible(False)
@@ -464,17 +469,32 @@ def robustness_figures(results: dict, out: Path, synthetic: bool) -> dict:
     if abl:
         full = results["test"]["by_strategy"].get("adaptive", {}).get("net_pnl_total")
         names = list(abl)
-        vals = [abl[n]["net_pnl"] for n in names]
-        fig, ax = plt.subplots(figsize=(7.2, 0.38 * len(names) + 1.4))
-        ax.barh(range(len(names)), vals, height=0.55, color=SERIES[2])
-        if full is not None:
-            ax.axvline(full, color=INK2, linewidth=1.2, label=f"full strategy C (${full:,.0f})")
-            ax.legend(loc="lower right")
+        full = full or 0.0
+        deltas = [abl[n]["net_pnl"] - full for n in names]
+        colors = [SERIES[0] if d >= 0 else SERIES[7] for d in deltas]  # diverging: gain blue, loss red
+        fig, ax = plt.subplots(figsize=(7.6, 0.38 * len(names) + 1.4))
+        ax.barh(range(len(names)), deltas, height=0.55, color=colors)
+        span = max(abs(d) for d in deltas) or 1.0
+        for i, d in enumerate(deltas):
+            ax.annotate(
+                f"{'+' if d >= 0 else '-'}${abs(d):,.0f}",
+                (d, i),
+                xytext=(4 if d >= 0 else -4, 0),
+                textcoords="offset points",
+                ha="left" if d >= 0 else "right",
+                va="center",
+                fontsize=8,
+                color=INK2,
+            )
+        ax.set_xlim(-1.25 * span, 1.25 * span)
         ax.set_yticks(range(len(names)), names)
         ax.grid(axis="y", visible=False)
         ax.invert_yaxis()
-        ax.axvline(0, color=AXIS, linewidth=0.8)
-        ax.set(title="Ablations: test net P&L with one component removed", xlabel="net P&L ($)")
+        ax.axvline(0, color=INK2, linewidth=1.0)
+        ax.set(
+            title=f"Ablations: change in test net P&L vs full strategy C (${full:,.0f})",
+            xlabel="Δ net P&L ($); left = removing the component hurts",
+        )
         files["ablations"] = _save(fig, out / "15_ablations.png", synthetic)
 
     fm = results.get("fill_model", {})

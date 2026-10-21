@@ -75,6 +75,17 @@ would lead to a weaker project, and what this implementation does instead.
 13. **CLI framework:** `argparse` (stdlib) instead of Typer, to keep the dependency set small.
 14. **Calibration:** temperature scaling implemented directly (one parameter, fit on validation) rather than
     relying on scikit-learn's calibration API, which changed across recent versions.
+15. **H1 and H4 are risk-adjusted hypotheses, so they get a risk-adjusted test.** The spec makes net P&L
+    the primary metric but phrases H1/H4 as "risk-adjusted". Both are reported: raw net P&L differences (primary)
+    and a paired bootstrap of the difference in mean/std of interval P&L, which decides H1/H4.
+16. **Bootstrap edge bias (found and fixed during the work).** A moving-block bootstrap under-samples each
+    session's first and last interval; the last one is the flatten window and systematically different, which
+    pushed bootstrap means above the sample mean. Replaced by a circular block bootstrap.
+17. **Placebo test added.** Beyond the null market, strategy C is re-run with its own alpha shifted by half a
+    session. A placebo that beat the no-alpha strategy would reveal an engine that rewards asymmetric quoting
+    rather than information.
+18. **Avoid confounded ablations.** "No volatility adaptation" must hold σ at a *typical* value; a far-too-low
+    constant silently removes the inventory skew as well (caught in the first full run).
 
 ## 2. Architecture (implemented)
 

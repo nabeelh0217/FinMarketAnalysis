@@ -60,12 +60,38 @@ class FillRules:
 
     @classmethod
     def from_preset(cls, preset: str, extra_queue_frac: float = 0.0) -> FillRules:
+        none = dict(
+            id_tracking=False,
+            cancel_credit=False,
+            crossing_add_fills=False,
+            hidden_through_fills=False,
+            hidden_same_price_fills=False,
+            front_of_queue=False,
+        )
         if preset == "conservative":
-            return cls(preset, False, False, False, False, False, False, extra_queue_frac)
+            return cls(preset, **none, extra_queue_frac=extra_queue_frac)
         if preset == "central":
-            return cls(preset, True, True, True, True, False, False, 0.0)
+            return cls(
+                preset,
+                **{
+                    **none,
+                    "id_tracking": True,
+                    "cancel_credit": True,
+                    "crossing_add_fills": True,
+                    "hidden_through_fills": True,
+                },
+            )
         if preset == "optimistic":
-            return cls(preset, False, False, True, True, True, True, 0.0)
+            return cls(
+                preset,
+                **{
+                    **none,
+                    "crossing_add_fills": True,
+                    "hidden_through_fills": True,
+                    "hidden_same_price_fills": True,
+                    "front_of_queue": True,
+                },
+            )
         raise ValueError(f"unknown fill preset {preset!r}")
 
     def initial_queue(self, visible_at_price: int | None) -> float:

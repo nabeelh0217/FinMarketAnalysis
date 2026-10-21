@@ -15,7 +15,46 @@ exact accounting, and a pre-declared evaluation protocol whose verdicts are allo
 > such. They validate the machinery; they are not evidence about real markets. Running the identical
 > protocol on the free LOBSTER sample takes the two steps under [Data](#data).
 
-<!-- RESULTS -->
+## Results so far (synthetic market, 4 held-out 27.5-minute sessions)
+
+Full reports: [`reports/results/synthetic_informed_baseline/report.md`](reports/results/synthetic_informed_baseline/report.md)
+(informed order flow) and [`reports/results/synthetic_null_baseline/report.md`](reports/results/synthetic_null_baseline/report.md)
+(same protocol, no informed traders). 498 + 118 backtests, every one logged in `trials.csv`.
+
+| strategy (net P&L after fees, inventory liquidated) | informed market | 95% CI | mean abs inventory | null market |
+|---|---|---|---|---|
+| A fixed spread | $1,883 | [$1,685, $2,067] | 248 sh | $2,533 |
+| B inventory-aware (Avellaneda–Stoikov skew) | $1,970 | [$1,844, $2,100] | 99 sh | $2,586 |
+| C alpha-aware (B + model alpha) | **$2,281** | [$2,163, $2,388] | 95 sh | $2,556 |
+| D regime rules (C + stop in high vol) | $1,902 | [$1,771, $2,018] | 121 sh | $2,403 |
+
+What the evidence says, mechanically scored (supported = 95% paired block-bootstrap interval excludes zero):
+
+* **The alpha component earns its keep when there is information, and only then.** C − B (identical except
+  alpha) is +$2.78 per minute [$1.94, $3.60] in the informed market and −$0.26 [−$0.80, $0.28] in the null
+  market. A **placebo** alpha (the model's own signal shifted by half a session) earns *less* than no alpha
+  ($1,857 vs $1,970), so the engine is not rewarding alpha-shaped noise.
+* **Prediction is real but mostly comes from the book, not the flow.** Out-of-sample log-loss gain over a
+  constant forecast: 0.24 nats [0.23, 0.25] (directional AUC 0.89, IC 0.45); half that in the null market (mechanical
+  queue depletion). Dropping *all* order-flow, trade-flow and activity features worsens test log loss by only
+  0.004, so order flow adds little beyond static book features here.
+* **Inventory control buys risk, not P&L.** B cuts mean inventory 248 → 99 shares and improves risk-adjusted P&L
+  (mean/std of 60 s P&L 1.77 → 2.93, difference CI [0.74, 1.75]); the raw P&L difference is not significant.
+  Removing the skew from C *raises* P&L (+$126) at 2.6× the inventory.
+* **The economics are rebate-driven and fragile.** Without the (illustrative) $0.002 maker rebate, every
+  strategy's net P&L falls by 55–68%; at a +$0.001 maker fee B loses money and C's lead over A flips. Requoting at
+  most once per second costs 23–32%. Higher risk aversion (γ ≥ 0.1) puts C below A. Fill assumptions move results
+  from −31…−34% (conservative queue) to ×3.4–4.1 (optimistic "fill on touch"), which is why the optimistic preset is
+  never used for conclusions.
+* **Adverse selection is visible in the markouts.** A third of the fixed-spread maker's fills happen while the
+  spread is wider than one tick (true ~8% of the time), and those fills realize ≈ 0 ticks after 30 s versus
+  0.24 at one tick: fills cluster right after a price level is consumed by informed flow.
+* **Negative results:** regime rules (D) and GLFT quoting with estimated fill intensity (H5) both did worse
+  than simpler strategies; volatility adaptation slightly *lowered* P&L.
+
+These numbers describe the project's simulated market, whose structure includes a planted signal. They show
+the machinery separates information from noise and that conclusions hinge on fees and fill assumptions; they
+say nothing yet about AAPL or MSFT. That requires the LOBSTER run below.
 
 ## What makes the evaluation credible
 

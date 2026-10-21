@@ -735,6 +735,7 @@ class ExperimentRunner:
                     cfg.execution.fees.taker_per_share,
                 ),
                 "by_regime": self._pnl_by_regime(self.test_results[strat]),
+                "markouts_by_regime": self._markouts_by_regime(mk_all, bt.markout_horizons_ms[-1]),
             }
         pairs = [
             ("inventory_aware", "fixed_spread"),
@@ -766,6 +767,37 @@ class ExperimentRunner:
             "interval_s": bt.bootstrap_block_s,
             "assumptions": self.test_results[exp.strategies[0]][0].assumptions,
         }
+
+    def _markouts_by_regime(self, mk: pd.DataFrame, horizon_ms: float) -> dict:
+        """Maker effective half-spread and realized spread by the causal regime prevailing at each fill."""
+        if mk.empty:
+            return {}
+        mk = mk[mk["liquidity"] == "maker"]
+        col = f"realized_spread_{horizon_ms:g}ms"
+        out: dict = {}
+        for sid, g in mk.groupby("session_id"):
+            reg = self.regimes[sid]
+            j = np.searchsorted(reg["ts_ns"].to_numpy(), g["ts_ns"].to_numpy(), side="right") - 1
+            for dim in ("volatility", "spread", "depth", "flow"):
+                lab = reg[dim].to_numpy()[np.maximum(j, 0)]
+                for value in np.unique(lab):
+                    m = lab == value
+                    e = out.setdefault(dim, {}).setdefault(
+                        str(value), {"n": 0, "eff_sum": 0.0, "rs_sum": 0.0, "rs_n": 0}
+                    )
+                    rs = g[col].to_numpy()[m]
+                    e["n"] += int(m.sum())
+                    e["eff_sum"] += float(g["eff_half_spread_ticks"].to_numpy()[m].sum())
+                    e["rs_sum"] += float(np.nansum(rs))
+                    e["rs_n"] += int(np.isfinite(rs).sum())
+        for d in out.values():
+            for k, e in d.items():
+                d[k] = {
+                    "n": e["n"],
+                    "eff_half_spread_ticks": e["eff_sum"] / max(e["n"], 1),
+                    f"realized_spread_{horizon_ms:g}ms_ticks": e["rs_sum"] / e["rs_n"] if e["rs_n"] else None,
+                }
+        return out
 
     def _pnl_by_regime(self, results: list[BacktestResult]) -> dict:
         out: dict = {}
