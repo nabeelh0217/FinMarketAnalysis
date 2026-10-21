@@ -1,0 +1,21 @@
+# Tiny end-to-end run (~1 min) used by the integration test and for a quick sanity check.
+include: [configs/data_synthetic.yaml]
+data:
+  dataset_id: synthetic_smoke
+  raw_dir: data/raw/synthetic_smoke
+  synthetic: {n_sessions: 4, duration_s: 420, seed: 3}
+models:
+  splits: {mode: sessions, train_sessions: 2, val_sessions: 1, exclude_open_s: 90, exclude_close_s: 20, embargo_s: 0}
+  fill_model: {n_shadow_orders: 400, horizon_s: 5}
+  candidates: [prior, logistic]
+backtest: {n_bootstrap: 200}
+experiment:
+  id: smoke
+  strategies: [fixed_spread, inventory_aware, adaptive]
+  validation_grid:
+    inventory_aware: {gamma: [0.05, 0.2]}
+  sensitivity:
+    latency_us: [0, 1000]
+    execution.fill_preset: [conservative, optimistic]
+  ablations: [no_alpha, "drop:order_flow"]
+  n_jobs: 1

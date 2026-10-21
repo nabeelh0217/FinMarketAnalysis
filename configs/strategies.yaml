@@ -1,0 +1,47 @@
+strategies:
+  fixed_spread:
+    quote_size: 100
+    half_spread_ticks: 0.5        # join the touch on a one-tick book
+  inventory_aware:
+    quote_size: 100
+    gamma: 0.1                    # 1/(tick*lot)
+    k: 1.5                        # 1/tick
+    A: 1.0                        # fills/s (GLFT)
+    horizon_mode: rolling         # rolling | session_end | glft
+    tau_s: 30
+    spread_mode: fixed            # fixed half-spread + inventory skew (clean ablation vs A)
+    half_spread_ticks: 0.5
+    min_half_spread_ticks: 0.5
+    use_vol_adaptation: true
+    use_inventory_skew: true
+  adaptive:
+    quote_size: 100
+    gamma: 0.1
+    tau_s: 30
+    spread_mode: fixed
+    half_spread_ticks: 0.5
+    alpha_weight: 1.0
+    alpha_clip_ticks: 2.0
+    alpha_guard_ticks: 0.25
+  regime:
+    quote_size: 100
+    gamma: 0.1
+    tau_s: 30
+    spread_mode: fixed
+    half_spread_ticks: 0.5
+    alpha_guard_ticks: 0.25
+    high_vol_ticks_per_sqrt_s: 1.0
+    high_vol_size_mult: 0.0
+    wide_spread_ticks: 3
+    wide_spread_extra_ticks: 0.5
+  risk:
+    max_inventory: 500
+    max_order_size: 300
+    max_outstanding_per_side: 300
+    max_notional: 250000
+    max_actions_per_second: 20
+    max_quote_age_s: null
+    max_market_spread_ticks: 10
+    max_price_deviation_ticks: 10
+    max_session_loss: 2000
+    stale_data_s: 5

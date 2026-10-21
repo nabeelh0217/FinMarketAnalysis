@@ -1,0 +1,15 @@
+# `amm experiment sensitivity`: the baseline protocol, robustness phase restricted to sensitivity grids.
+include: [configs/data_synthetic.yaml]
+models:
+  splits: {mode: sessions, train_sessions: 4, val_sessions: 2, exclude_open_s: 120, exclude_close_s: 30, embargo_s: 0}
+experiment:
+  id: synthetic_informed_sensitivity
+  strategies: [fixed_spread, inventory_aware, adaptive]
+  validation_grid:
+    inventory_aware: {gamma: [0.02, 0.1, 0.3]}
+    adaptive: {alpha_guard_ticks: [0.15, 0.3, null]}
+  sensitivity:
+    latency_us: [0, 100, 250, 1000, 5000, 20000]
+    execution.fees.maker_per_share: [-0.003, -0.002, 0.0, 0.001]
+    execution.fill_preset: [conservative, central, optimistic]
+  n_jobs: 4

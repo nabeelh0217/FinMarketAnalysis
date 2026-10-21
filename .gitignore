@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+*.key
+
+# Market data (never committed; see docs/implementation_plan.md §3)
+data/raw/*
+data/interim/*
+data/processed/*
+data/manifests/*
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!data/manifests/.gitkeep
+*.zip
+*.parquet
+
+# Generated experiment artifacts (the curated final report is committed explicitly)
+reports/experiments/*
+!reports/experiments/.gitkeep
+reports/figures/*
+!reports/figures/.gitkeep
+*.joblib
+*.pkl
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+tmp/
+
+# ad-hoc CLI outputs (single backtests, saved models)
+reports/backtests/
+reports/models/

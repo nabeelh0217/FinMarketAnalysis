@@ -1,0 +1,63 @@
+{
+  "n_messages": 7805,
+  "book_sha": "2fba9f0da62dc12baea7",
+  "n_observable_states": 7615,
+  "feature_sample": {
+    "imb_l1": [
+      -0.5,
+      -0.7222222222,
+      0.6296296296
+    ],
+    "micro_minus_mid": [
+      -0.25,
+      -0.3611111111,
+      0.3148148148
+    ],
+    "imb_l5": [
+      -0.5698924731,
+      -0.393258427,
+      0.5056179775
+    ],
+    "ofi_t5": [
+      -8.0,
+      -19.0,
+      21.0
+    ],
+    "signed_vol_t5": [
+      -22.0,
+      0.0,
+      17.0
+    ],
+    "rv_t30": [
+      0.5382533943,
+      0.6708203932,
+      0.6708203932
+    ],
+    "ret_t5": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "label_counts": {
+    "-1": 873,
+    "0": 5665,
+    "1": 1033
+  },
+  "fixed_spread": {
+    "n_fills": 93,
+    "fills_sha": "526eba5f89008c31e326",
+    "net_pnl": 25.8,
+    "fees_net": -17.8,
+    "mean_abs_inventory": 189.041096,
+    "max_drawdown": 10.0
+  },
+  "inventory_aware": {
+    "n_fills": 94,
+    "fills_sha": "3179e6c1e02f027b49cc",
+    "net_pnl": 22.8,
+    "fees_net": -18.8,
+    "mean_abs_inventory": 50.0,
+    "max_drawdown": 3.5
+  }
+}

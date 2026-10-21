@@ -1,0 +1,18 @@
+# Planted-null check: same protocol on a SYNTHETIC market with no informed flow.
+include: [configs/data_synthetic_null.yaml]
+models:
+  splits: {mode: sessions, train_sessions: 4, val_sessions: 2, exclude_open_s: 120, exclude_close_s: 30, embargo_s: 0}
+experiment:
+  id: synthetic_null_baseline
+  description: Same protocol as synthetic_informed_baseline on the uninformed (null) synthetic market.
+  kind: confirmatory
+  strategies: [fixed_spread, inventory_aware, adaptive, regime]
+  validation_grid:
+    fixed_spread: {half_spread_ticks: [0.5, 1.5]}
+    inventory_aware: {gamma: [0.02, 0.1, 0.3]}
+    adaptive: {alpha_guard_ticks: [0.15, 0.3, null]}
+  sensitivity:
+    latency_us: [0, 250, 5000]
+    execution.fill_preset: [conservative, central, optimistic]
+  ablations: [no_alpha, no_alpha_guard]
+  n_jobs: 4

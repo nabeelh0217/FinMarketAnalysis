@@ -1,0 +1,39 @@
+# Primary pre-registered comparison on the SYNTHETIC informed-flow market (Mode 2).
+# Real-data versions: lobster_msft.yaml / lobster_aapl.yaml (identical protocol, intraday split).
+include: [configs/data_synthetic.yaml]
+
+models:
+  splits:
+    mode: sessions
+    train_sessions: 4
+    val_sessions: 2
+    exclude_open_s: 120
+    exclude_close_s: 30
+    embargo_s: 0
+
+experiment:
+  id: synthetic_informed_baseline
+  description: >-
+    A (fixed spread) vs B (inventory-aware) vs C (alpha-aware) vs D (regime rules) on 4 held-out synthetic
+    sessions with informed flow; parameters chosen on 2 validation sessions.
+  kind: confirmatory
+  strategies: [fixed_spread, inventory_aware, adaptive, regime]
+  validation_grid:
+    fixed_spread: {half_spread_ticks: [0.5, 1.5]}
+    inventory_aware: {gamma: [0.02, 0.1, 0.3]}
+    adaptive: {alpha_guard_ticks: [0.15, 0.3, null]}
+  sensitivity:
+    latency_us: [0, 100, 250, 1000, 5000, 20000]
+    execution.fees.maker_per_share: [-0.003, -0.002, 0.0, 0.001]
+    execution.fill_preset: [conservative, central, optimistic]
+    strategies.*.quote_size: [100, 200, 300]
+    strategies.risk.max_inventory: [200, 500, 1000]
+    strategies.*.gamma: [0.02, 0.1, 0.3, 1.0]
+    features.vol_window_s: [10, 30, 120]
+    models.labels.horizon_ms: [250, 1000, 5000]
+    backtest.decision_min_interval_ms: [0, 100, 1000]
+    strategies.*.half_spread_ticks: [0.5, 1.5]
+  ablations: [no_alpha, no_alpha_shift, no_alpha_guard, no_inventory_skew, no_vol_adaptation, fill_aware_glft,
+              "drop:book_l1", "drop:microprice", "drop:multi_level", "drop:order_flow", "drop:trade_flow",
+              "drop:price_history"]
+  n_jobs: 4
