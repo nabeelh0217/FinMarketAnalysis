@@ -136,6 +136,11 @@ def _run_job(job: dict) -> dict:
 def run_jobs(ctx: Context, jobs: list[dict], n_jobs: int) -> list[dict]:
     global _CTX
     _CTX = ctx
+    if n_jobs > 1 and "fork" not in mp.get_all_start_methods():
+        # workers read the (large) context by inheriting it through fork; without fork (Windows),
+        # shipping it to every worker would cost more than it saves, so run serially
+        log.warning("process fork unavailable on this platform; running %d backtests serially", len(jobs))
+        n_jobs = 1
     if n_jobs <= 1 or len(jobs) <= 1:
         return [_run_job(j) for j in jobs]
     with mp.get_context("fork").Pool(n_jobs) as pool:

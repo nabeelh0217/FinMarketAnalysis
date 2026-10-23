@@ -96,3 +96,16 @@ def test_real_lobster_sample_validates(monkeypatch):
     cfg = load_config(REPO / "configs/data.yaml")
     rep = validate_session(load_session(cfg.data.sessions[0], cfg.data))
     assert rep.passed, rep.format()
+
+
+def test_parallel_jobs_fall_back_to_serial_without_fork(monkeypatch):
+    """Windows has no fork start method; the runner must still work (serially)."""
+    import multiprocessing as mp
+
+    from adaptive_market_maker.experiments import runner
+
+    calls = []
+    monkeypatch.setattr(mp, "get_all_start_methods", lambda: ["spawn"])
+    monkeypatch.setattr(runner, "_run_job", lambda job: calls.append(job) or {"ok": job})
+    out = runner.run_jobs(ctx=object(), jobs=[1, 2, 3], n_jobs=4)
+    assert out == [{"ok": 1}, {"ok": 2}, {"ok": 3}] and calls == [1, 2, 3]

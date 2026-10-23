@@ -79,6 +79,10 @@ pip install -e ".[dev]"
 pytest                                                    # ~80 tests, ~1-2 minutes
 ```
 
+Python 3.11 or newer is required (`python3 --version`; macOS's built-in Python is usually too old, so install
+3.11+ from python.org or Homebrew). On Windows, activate with `.venv\Scripts\activate`; experiments still run
+there but backtests execute serially, because parallel workers rely on `fork`.
+
 ## Quick start (synthetic market, no downloads)
 
 ```bash
