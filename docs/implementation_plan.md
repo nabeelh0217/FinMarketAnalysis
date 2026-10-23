@@ -140,7 +140,10 @@ src/adaptive_market_maker/
 - [x] Phase 9 — shadow-order fill model (logistic + Kaplan–Meier + intensity fit), three fill presets
 - [x] Phase 10 — out-of-sample comparison, paired block bootstrap (raw and risk-adjusted), ablations, sensitivity
 - [x] Phase 11 — report generator, docs, reproduction instructions
-- [ ] **Blocked:** run `lobster_msft.yaml` / `lobster_aapl.yaml` on the real sample (needs lobsterdata.com access)
+- [x] Real LOBSTER MSFT 2012-06-21 (10 levels) validated on the user's machine: 668,765 messages, all 665,148
+      book-changing messages reconciled against LOBSTER's snapshots with zero discrepancies; 241 identical
+      consecutive messages and 3 timestamps with >9 decimals flagged (see note below)
+- [ ] Run `lobster_msft.yaml` / `lobster_aapl.yaml` experiments on the real samples (in progress, run locally)
 
 ## 6. Phase notes
 
@@ -158,6 +161,11 @@ scenario keeps total aggressive flow equal (3/s) but uninformed.
 OFI, microprice, AS/GLFT, ledger and markout tests; perturbing future events leaves earlier features, fills and
 decisions unchanged; no fill precedes order arrival; inventory never exceeds the limit; replay is
 deterministic; conservative ≤ central ≤ optimistic fill counts.
+
+**Real-data validation.** The duplicate-message warning is informative, not a defect: a duplicated
+visible message (types 1–4) would break the book reconciliation, which passed for every message, so those
+rows are separate real events. The validator now reports the duplicates by message type. The 3 truncated
+timestamps lose less than a nanosecond and timestamps remain monotonic.
 
 **Phases 10–11.** Experiment runner, registry, statistics, plots, report, docs. Results: see README and
 `reports/`.

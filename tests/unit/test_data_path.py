@@ -116,3 +116,16 @@ def test_synthetic_generator_has_no_directional_bias():
         et, side = np.array(m.out_type), np.array(m.out_side)
         buyer_share.append(np.mean(side[et == 4] == -1))  # execution of a sell order = buyer-initiated
     assert abs(np.mean(buyer_share) - 0.5) < 0.02
+
+
+def test_duplicate_messages_are_counted_by_type(small_synthetic_session):
+    s = small_synthetic_session.slice_rows(0, 300)
+    row = int(np.nonzero(s.event_type[1:] == 4)[0][0]) + 1  # duplicate one execution message
+    for name in ("ts", "event_type", "order_id", "size", "price", "side", "origin_seq"):
+        a = getattr(s, name)
+        setattr(s, name, np.insert(a, row + 1, a[row]))
+    for name in ("ask_px", "ask_sz", "bid_px", "bid_sz"):
+        a = getattr(s, name)
+        setattr(s, name, np.insert(a, row + 1, a[row], axis=0))
+    check = next(c for c in validate_session(s).checks if c.name == "duplicate_messages")
+    assert check.count == 1 and "EXEC_VISIBLE': 1" in check.detail

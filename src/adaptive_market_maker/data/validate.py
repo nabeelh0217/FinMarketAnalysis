@@ -144,8 +144,18 @@ def validate_session(
         "messages sharing a timestamp with the previous one (sweeps); only group ends are observable",
     )
     msg = np.column_stack([ts, et, session.order_id, size, price, side])
-    dup = int((np.all(msg[1:] == msg[:-1], axis=1)).sum())
-    rep.add("duplicate_messages", "warning", dup == 0, dup, "identical consecutive messages")
+    dup_rows = np.nonzero(np.all(msg[1:] == msg[:-1], axis=1))[0] + 1
+    dup = int(dup_rows.size)
+    by_type = {EventType(int(t)).name: int((et[dup_rows] == t).sum()) for t in np.unique(et[dup_rows])}
+    rep.add(
+        "duplicate_messages",
+        "warning",
+        dup == 0,
+        dup,
+        f"identical consecutive messages {by_type}; types 1-4 change the visible book, so if "
+        "book_transitions_consistent passes they are separate real events (e.g. one order filled twice "
+        "in the same nanosecond); hidden executions (type 5) cannot be verified that way",
+    )
 
     outside = (ts < session.open_ns) | (ts > session.close_ns)
     rep.add(
