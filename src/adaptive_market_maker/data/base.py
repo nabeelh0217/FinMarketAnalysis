@@ -84,6 +84,18 @@ class SessionData:
             out[:-1] = self.ts[1:] != self.ts[:-1]
         return out
 
+    @cached_property
+    def state_before_group(self) -> np.ndarray:
+        """For each row, the last row of the *previous* timestamp group (-1 if none): the book prevailing
+        before the event that row belongs to. A sweep's intermediate rows are already partly consumed by
+        the same aggressive order, so prices "before a fill" must be read here, not at row - 1."""
+        n = len(self)
+        starts = np.ones(n, dtype=bool)
+        if n > 1:
+            starts[1:] = self.ts[1:] != self.ts[:-1]
+        group_start = np.maximum.accumulate(np.where(starts, np.arange(n), 0))
+        return group_start - 1
+
     def ticks_to_price(self, ticks: float) -> int:
         return int(round(ticks * self.tick_size))
 

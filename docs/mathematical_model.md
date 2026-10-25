@@ -166,7 +166,9 @@ taker fee. Mid-marked P&L is reported alongside.
 
 ## Markouts and the spread decomposition (`evaluation/markouts.py`)
 
-With mid `M_0` just before the fill and as-of mid `M_h` at fill time + h:
+With `M_0` the mid of the quote prevailing *before the aggressive order arrived* (the observable state before
+the fill's timestamp group: rows inside a sweep are already partly consumed by the same order) and as-of
+mid `M_h` at fill time + h:
 
 ```
 effective half-spread   e    = s (M_0 − P)
@@ -174,7 +176,8 @@ adverse selection       AS_h = −s (M_h − M_0)
 realized spread         RS_h = e − AS_h = s (M_h − P)
 ```
 
-`RS_h` equals the spec's `Markout_h`. Fees are not inside these numbers; they are added once when computing
+`RS_h` equals the spec's `Markout_h`. Regime breakdowns of fills likewise use the state *before* the
+fill's timestamp, never the post-fill book. Fees are not inside these numbers; they are added once when computing
 net dollars per share. Fills whose horizon runs past the data are excluded and counted.
 
 ## Statistics (`evaluation/statistics.py`)

@@ -152,3 +152,11 @@ def test_optimistic_fill_preset_fills_more_than_conservative(small_synthetic_ses
             s, make_strategy("fixed_spread", cfg.strategies), cfg, _signals(s), a, b
         ).summary["n_fills"]
     assert n["conservative"] <= n["central"] <= n["optimistic"]
+
+
+def test_fill_mid_is_the_quote_prevailing_before_the_aggressor(runs):
+    s, _, _, res = runs
+    maker = res.fills[res.fills["liquidity"] == "maker"]
+    assert len(maker) > 0
+    expected = s.mid_ticks[s.state_before_group[maker["row"].to_numpy()]]
+    np.testing.assert_allclose(maker["mid_before_ticks"].to_numpy(), expected, equal_nan=True)

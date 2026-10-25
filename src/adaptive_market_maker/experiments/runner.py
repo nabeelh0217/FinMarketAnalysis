@@ -147,6 +147,15 @@ def run_jobs(ctx: Context, jobs: list[dict], n_jobs: int) -> list[dict]:
         return pool.map(_run_job, jobs, chunksize=1)
 
 
+def state_index_before(state_ts: np.ndarray, event_ts: np.ndarray) -> np.ndarray:
+    """Index of the last observable state strictly before each event (-1 if none).
+
+    A fill shares its timestamp with the end of the burst that caused it; that end state already reflects
+    the fill, so classifying a fill by it (side="right") would label fills by their own consequences.
+    """
+    return np.searchsorted(state_ts, event_ts, side="left") - 1
+
+
 # ---------------------------------------------------------------------------------------- data/features
 def build_context(cfg: ProjectConfig) -> Context:
     dataset = load_dataset(cfg.data)
@@ -782,7 +791,7 @@ class ExperimentRunner:
         out: dict = {}
         for sid, g in mk.groupby("session_id"):
             reg = self.regimes[sid]
-            j = np.searchsorted(reg["ts_ns"].to_numpy(), g["ts_ns"].to_numpy(), side="right") - 1
+            j = state_index_before(reg["ts_ns"].to_numpy(), g["ts_ns"].to_numpy())
             for dim in ("volatility", "spread", "depth", "flow"):
                 lab = reg[dim].to_numpy()[np.maximum(j, 0)]
                 for value in np.unique(lab):
@@ -816,7 +825,7 @@ class ExperimentRunner:
             j = np.searchsorted(reg["ts_ns"].to_numpy(), t, side="right") - 1
             ok = j >= 0
             fl_rows = (
-                np.searchsorted(reg["ts_ns"].to_numpy(), r.fills["ts_ns"].to_numpy(), side="right") - 1
+                state_index_before(reg["ts_ns"].to_numpy(), r.fills["ts_ns"].to_numpy())
                 if not r.fills.empty
                 else np.array([], int)
             )

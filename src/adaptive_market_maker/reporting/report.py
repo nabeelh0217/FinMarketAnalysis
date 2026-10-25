@@ -207,6 +207,13 @@ def build_report(exp_dir: Path) -> Path:
             + " (descriptive)."
         )
     add("- **H7** (robustness): see section 13 for every sensitivity grid and where results change sign.\n")
+    idle = [s for s in strats if bys[s]["n_fills_total"] == 0]
+    for s in idle:
+        sel = R.get("selection", {}).get(s, {}).get("selected")
+        add(
+            f"> **{_name(s)} made no fills on test.** Its validation-selected parameters ({json.dumps(sel)}) "
+            "amount to not trading, so every comparison against it is a comparison against doing nothing.\n"
+        )
 
     # ------------------------------------------------------------------ 2. questions
     add("## 2. Research question and hypotheses\n")
@@ -677,6 +684,14 @@ def build_report(exp_dir: Path) -> Path:
     # ------------------------------------------------------------------ 13. sensitivity
     add("## 13. Sensitivity and robustness\n")
     sens = R.get("sensitivity", {})
+    ref = bys.get("adaptive") or bys[strats[0]]
+    ci_ref = ref.get("interval_pnl_total_ci")
+    if sens and ci_ref:
+        add(
+            f"Noise yardstick: the 95% interval for {_name('adaptive' if 'adaptive' in bys else strats[0])}'s "
+            f"test net P&L is {_f(ci_ref[1] - ci_ref[0], money=True)} wide. Single-grid-point differences smaller "
+            "than that are within sampling noise; look for consistent trends across a grid instead.\n"
+        )
     fragile = []
     for key, pts in sens.items():
         ss = list(next(iter(pts.values())))
@@ -822,8 +837,12 @@ def build_report(exp_dir: Path) -> Path:
         )
     add("## 18. Next research steps\n")
     add(
-        "- Run `configs/experiments/lobster_msft.yaml` and `lobster_aapl.yaml` on the real samples (large-tick vs small-tick).\n"
-        "- Use more sessions (paid LOBSTER history or Databento MBO, after a cost check) for cross-session walk-forward.\n"
+        (
+            "- Run `configs/experiments/lobster_msft.yaml` and `lobster_aapl.yaml` on the real samples (large-tick vs small-tick).\n"
+            if syn
+            else "- Repeat on the other free sample (large-tick vs small-tick) and compare which conclusions survive.\n"
+        )
+        + "- Use more sessions (paid LOBSTER history or Databento MBO, after a cost check) for cross-session walk-forward.\n"
         "- Queue-position-aware quoting: choose join/step-back from the fill model's P(fill) and expected markout.\n"
         "- Latency distributions instead of constants; an impact model for our own orders.\n"
     )

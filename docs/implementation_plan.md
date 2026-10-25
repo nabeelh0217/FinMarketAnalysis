@@ -143,7 +143,10 @@ src/adaptive_market_maker/
 - [x] Real LOBSTER MSFT 2012-06-21 (10 levels) validated on the user's machine: 668,765 messages, all 665,148
       book-changing messages reconciled against LOBSTER's snapshots with zero discrepancies; 241 identical
       consecutive messages and 3 timestamps with >9 decimals flagged (see note below)
-- [ ] Run `lobster_msft.yaml` / `lobster_aapl.yaml` experiments on the real samples (in progress, run locally)
+- [x] `lobster_msft.yaml` run locally (results summarized in README; H3 supported, H1 not established)
+- [x] Fixed two analysis-only measurement bugs found while reading the MSFT report: fill-time mid taken
+      mid-sweep, and fills classified by the post-fill book state (P&L, fills and realized spreads unaffected)
+- [ ] `lobster_aapl.yaml` (small-tick contrast)
 
 ## 6. Phase notes
 

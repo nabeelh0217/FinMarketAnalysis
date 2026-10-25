@@ -229,36 +229,36 @@ Per maker fill (ticks per share, side-signed so positive = good for us): effecti
 
 | strategy | maker fills | e | RS 100ms | RS 1000ms | RS 5000ms | RS 30000ms | AS 30000ms | net $/share (longest h, incl. fees) |
 |---|---|---|---|---|---|---|---|---|
-| A fixed spread | 5,158 | 0.448 | 0.297 | 0.250 | 0.191 | 0.167 | 0.281 | $0.00363 |
-| B inventory-aware | 6,689 | 0.353 | 0.165 | 0.149 | 0.105 | 0.100 | 0.253 | $0.00300 |
-| C alpha-aware | 7,005 | 0.334 | 0.138 | 0.149 | 0.125 | 0.132 | 0.202 | $0.00331 |
-| D regime rules | 4,558 | 0.318 | 0.155 | 0.213 | 0.208 | 0.223 | 0.095 | $0.00422 |
+| A fixed spread | 5,158 | 0.523 | 0.297 | 0.250 | 0.191 | 0.167 | 0.356 | $0.00363 |
+| B inventory-aware | 6,689 | 0.409 | 0.165 | 0.149 | 0.105 | 0.100 | 0.309 | $0.00300 |
+| C alpha-aware | 7,005 | 0.374 | 0.138 | 0.149 | 0.125 | 0.132 | 0.242 | $0.00331 |
+| D regime rules | 4,558 | 0.337 | 0.155 | 0.213 | 0.208 | 0.223 | 0.115 | $0.00422 |
 
 | strategy | side | fills | e (ticks) | RS longest h (ticks) |
 |---|---|---|---|---|
-| A fixed spread | sell | 2,579 | 0.448 | 0.313 |
-| A fixed spread | buy | 2,583 | 0.447 | 0.018 |
-| B inventory-aware | sell | 3,347 | 0.353 | 0.268 |
-| B inventory-aware | buy | 3,345 | 0.353 | -0.068 |
-| C alpha-aware | sell | 3,504 | 0.333 | 0.301 |
-| C alpha-aware | buy | 3,504 | 0.335 | -0.038 |
-| D regime rules | sell | 2,280 | 0.322 | 0.388 |
-| D regime rules | buy | 2,282 | 0.312 | 0.057 |
+| A fixed spread | sell | 2,579 | 0.521 | 0.313 |
+| A fixed spread | buy | 2,583 | 0.523 | 0.018 |
+| B inventory-aware | sell | 3,347 | 0.408 | 0.268 |
+| B inventory-aware | buy | 3,345 | 0.410 | -0.068 |
+| C alpha-aware | sell | 3,504 | 0.372 | 0.301 |
+| C alpha-aware | buy | 3,504 | 0.375 | -0.038 |
+| D regime rules | sell | 2,280 | 0.342 | 0.388 |
+| D regime rules | buy | 2,282 | 0.330 | 0.057 |
 
 
 Maker realized spread at the longest horizon by causal regime at the time of the fill (ticks):
 
 | dimension | regime | A fixed spread | B inventory-aware | C alpha-aware | D regime rules |
 |---|---|---|---|---|---|
-| volatility | low | 0.201 (n=1,403) | 0.140 (n=1,880) | 0.178 (n=1,911) | 0.245 (n=1,396) |
-| volatility | mid | 0.141 (n=1,371) | 0.112 (n=1,868) | 0.141 (n=1,899) | 0.226 (n=1,285) |
-| volatility | high | 0.162 (n=2,384) | 0.067 (n=2,941) | 0.099 (n=3,195) | 0.203 (n=1,877) |
-| spread | 1 tick | 0.240 (n=3,470) | 0.181 (n=4,491) | 0.201 (n=4,814) | 0.250 (n=3,520) |
-| spread | >1 tick | 0.016 (n=1,688) | -0.066 (n=2,198) | -0.020 (n=2,191) | 0.129 (n=1,038) |
-| flow | balanced | 0.232 (n=2,198) | 0.187 (n=2,784) | 0.184 (n=3,077) | 0.291 (n=1,972) |
-| flow | directional | 0.119 (n=2,960) | 0.038 (n=3,905) | 0.092 (n=3,928) | 0.170 (n=2,586) |
-| depth | thin | 0.208 (n=2,907) | 0.115 (n=3,921) | 0.139 (n=4,295) | 0.212 (n=2,925) |
-| depth | deep | 0.114 (n=2,251) | 0.079 (n=2,768) | 0.121 (n=2,710) | 0.241 (n=1,633) |
+| volatility | low | 0.193 (n=1,426) | 0.129 (n=1,939) | 0.170 (n=1,985) | 0.235 (n=1,451) |
+| volatility | mid | 0.139 (n=1,386) | 0.109 (n=1,872) | 0.145 (n=1,896) | 0.243 (n=1,275) |
+| volatility | high | 0.168 (n=2,346) | 0.075 (n=2,878) | 0.100 (n=3,124) | 0.198 (n=1,832) |
+| spread | 1 tick | 0.135 (n=4,514) | 0.116 (n=4,980) | 0.157 (n=4,692) | 0.315 (n=2,764) |
+| spread | >1 tick | 0.394 (n=644) | 0.052 (n=1,709) | 0.081 (n=2,313) | 0.080 (n=1,794) |
+| flow | balanced | 0.098 (n=1,911) | 0.066 (n=2,391) | 0.068 (n=2,598) | 0.150 (n=1,660) |
+| flow | directional | 0.208 (n=3,247) | 0.119 (n=4,298) | 0.170 (n=4,407) | 0.264 (n=2,898) |
+| depth | thin | 0.184 (n=2,973) | 0.106 (n=3,871) | 0.130 (n=4,064) | 0.255 (n=2,496) |
+| depth | deep | 0.143 (n=2,185) | 0.091 (n=2,818) | 0.135 (n=2,941) | 0.183 (n=2,062) |
 
 ![Maker realized spread by horizon.](figures/10_markouts.png)
 
@@ -307,6 +307,8 @@ Incremental value of order-flow information (H2): test log-loss change when the 
 *Ablations of strategy C.*
 
 ## 13. Sensitivity and robustness
+
+Noise yardstick: the 95% interval for C alpha-aware's test net P&L is $225.83 wide. Single-grid-point differences smaller than that are within sampling noise; look for consistent trends across a grid instead.
 
 **latency_us**
 

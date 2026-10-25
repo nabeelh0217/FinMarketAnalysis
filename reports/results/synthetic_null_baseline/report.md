@@ -228,36 +228,36 @@ Per maker fill (ticks per share, side-signed so positive = good for us): effecti
 
 | strategy | maker fills | e | RS 100ms | RS 1000ms | RS 5000ms | RS 30000ms | AS 30000ms | net $/share (longest h, incl. fees) |
 |---|---|---|---|---|---|---|---|---|
-| A fixed spread | 4,230 | 0.486 | 0.432 | 0.406 | 0.399 | 0.389 | 0.098 | $0.00588 |
-| B inventory-aware | 4,945 | 0.436 | 0.352 | 0.333 | 0.324 | 0.325 | 0.111 | $0.00525 |
-| C alpha-aware | 5,150 | 0.414 | 0.317 | 0.299 | 0.297 | 0.295 | 0.118 | $0.00495 |
-| D regime rules | 4,733 | 0.411 | 0.327 | 0.309 | 0.309 | 0.306 | 0.105 | $0.00505 |
+| A fixed spread | 4,230 | 0.508 | 0.432 | 0.406 | 0.399 | 0.389 | 0.119 | $0.00588 |
+| B inventory-aware | 4,945 | 0.453 | 0.352 | 0.333 | 0.324 | 0.325 | 0.128 | $0.00525 |
+| C alpha-aware | 5,150 | 0.429 | 0.317 | 0.299 | 0.297 | 0.295 | 0.133 | $0.00495 |
+| D regime rules | 4,733 | 0.424 | 0.327 | 0.309 | 0.309 | 0.306 | 0.118 | $0.00505 |
 
 | strategy | side | fills | e (ticks) | RS longest h (ticks) |
 |---|---|---|---|---|
-| A fixed spread | sell | 2,117 | 0.486 | 0.235 |
-| A fixed spread | buy | 2,117 | 0.484 | 0.542 |
-| B inventory-aware | sell | 2,473 | 0.432 | 0.168 |
-| B inventory-aware | buy | 2,473 | 0.439 | 0.482 |
-| C alpha-aware | sell | 2,578 | 0.411 | 0.141 |
-| C alpha-aware | buy | 2,576 | 0.415 | 0.450 |
-| D regime rules | sell | 2,368 | 0.413 | 0.166 |
-| D regime rules | buy | 2,368 | 0.408 | 0.446 |
+| A fixed spread | sell | 2,117 | 0.507 | 0.235 |
+| A fixed spread | buy | 2,117 | 0.507 | 0.542 |
+| B inventory-aware | sell | 2,473 | 0.449 | 0.168 |
+| B inventory-aware | buy | 2,473 | 0.458 | 0.482 |
+| C alpha-aware | sell | 2,578 | 0.426 | 0.141 |
+| C alpha-aware | buy | 2,576 | 0.430 | 0.450 |
+| D regime rules | sell | 2,368 | 0.425 | 0.166 |
+| D regime rules | buy | 2,368 | 0.422 | 0.446 |
 
 
 Maker realized spread at the longest horizon by causal regime at the time of the fill (ticks):
 
 | dimension | regime | A fixed spread | B inventory-aware | C alpha-aware | D regime rules |
 |---|---|---|---|---|---|
-| volatility | low | 0.393 (n=1,154) | 0.354 (n=1,270) | 0.320 (n=1,299) | 0.326 (n=1,233) |
-| volatility | mid | 0.378 (n=1,620) | 0.310 (n=1,909) | 0.299 (n=1,989) | 0.324 (n=1,850) |
-| volatility | high | 0.397 (n=1,456) | 0.320 (n=1,766) | 0.274 (n=1,862) | 0.271 (n=1,650) |
-| spread | 1 tick | 0.433 (n=3,676) | 0.378 (n=4,206) | 0.351 (n=4,366) | 0.355 (n=4,138) |
-| spread | >1 tick | 0.095 (n=554) | 0.021 (n=739) | -0.013 (n=784) | -0.032 (n=595) |
-| flow | balanced | 0.393 (n=2,213) | 0.330 (n=2,552) | 0.290 (n=2,691) | 0.299 (n=2,468) |
-| flow | directional | 0.383 (n=2,017) | 0.319 (n=2,393) | 0.302 (n=2,459) | 0.314 (n=2,265) |
-| depth | thin | 0.356 (n=2,484) | 0.281 (n=3,058) | 0.236 (n=3,258) | 0.249 (n=2,931) |
-| depth | deep | 0.436 (n=1,746) | 0.396 (n=1,887) | 0.398 (n=1,892) | 0.398 (n=1,802) |
+| volatility | low | 0.396 (n=1,153) | 0.353 (n=1,302) | 0.318 (n=1,352) | 0.322 (n=1,288) |
+| volatility | mid | 0.371 (n=1,633) | 0.297 (n=1,918) | 0.289 (n=1,983) | 0.311 (n=1,841) |
+| volatility | high | 0.403 (n=1,444) | 0.335 (n=1,725) | 0.286 (n=1,815) | 0.288 (n=1,604) |
+| spread | 1 tick | 0.386 (n=4,114) | 0.383 (n=4,379) | 0.382 (n=4,357) | 0.403 (n=3,961) |
+| spread | >1 tick | 0.466 (n=116) | -0.120 (n=566) | -0.179 (n=793) | -0.191 (n=772) |
+| flow | balanced | 0.410 (n=1,851) | 0.343 (n=2,119) | 0.302 (n=2,226) | 0.302 (n=2,069) |
+| flow | directional | 0.372 (n=2,379) | 0.311 (n=2,826) | 0.290 (n=2,924) | 0.310 (n=2,664) |
+| depth | thin | 0.339 (n=2,324) | 0.276 (n=2,785) | 0.248 (n=2,936) | 0.264 (n=2,567) |
+| depth | deep | 0.449 (n=1,906) | 0.388 (n=2,160) | 0.358 (n=2,214) | 0.357 (n=2,166) |
 
 ![Maker realized spread by horizon.](figures/10_markouts.png)
 
@@ -285,6 +285,8 @@ Identical to the full strategy (the component is inactive in the validation-sele
 *Ablations of strategy C.*
 
 ## 13. Sensitivity and robustness
+
+Noise yardstick: the 95% interval for C alpha-aware's test net P&L is $283.04 wide. Single-grid-point differences smaller than that are within sampling noise; look for consistent trends across a grid instead.
 
 **latency_us**
 

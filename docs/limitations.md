@@ -4,10 +4,9 @@ A historical backtest is never proof of future profitability. These are the spec
 
 ## Data
 
-* **No real market data was available in the development sandbox.** Its network policy blocked
-  lobsterdata.com, Nasdaq's ITCH samples and Databento. Every result produced so far is **synthetic**. The
-  LOBSTER path is implemented and tested against files in LOBSTER's exact layout, but has not yet been run on
-  the real samples.
+* **Real data is one day.** The protocol has been run on a single LOBSTER session (MSFT, 2012-06-21, a
+  sharp sell-off), with an intraday train/validation/test split. The test window is under two hours, so
+  intervals are wide and sensitivity results move by about the width of those intervals.
 * **Synthetic ≠ real.** The synthetic market (Poisson order flow, a latent fair value, informed market orders)
   is the project's own model. Its parameters were tuned so that the economics look plausible (one-tick
   spreads ~90% of the time, adverse selection eating most of the half-spread), not calibrated to any instrument.

@@ -151,3 +151,39 @@ def test_intraday_segments_are_ordered_with_embargo(small_synthetic_session):
 def test_sessions_mode_requires_enough_sessions(small_synthetic_session):
     with pytest.raises(ValueError):
         make_segments(Dataset("x", [small_synthetic_session]), SplitConfig(mode="sessions"))
+
+
+def test_state_before_group_skips_rows_of_the_same_burst():
+    from adaptive_market_maker.experiments.runner import state_index_before
+
+    rows = [
+        dict(t_ms=0, type=1, oid=1, size=100, price_ticks=2998, side=BUY, bids=BIDS, asks=ASKS),
+        dict(
+            t_ms=5,
+            type=4,
+            oid=7,
+            size=300,
+            price_ticks=3000,
+            side=BUY,
+            bids=[(2999, 200), (2998, 100)],
+            asks=ASKS,
+        ),  # sweep, part 1
+        dict(
+            t_ms=5, type=4, oid=8, size=200, price_ticks=2999, side=BUY, bids=[(2998, 100)], asks=ASKS
+        ),  # sweep, part 2 (same timestamp)
+        dict(
+            t_ms=9,
+            type=1,
+            oid=9,
+            size=100,
+            price_ticks=2999,
+            side=BUY,
+            bids=[(2999, 100), (2998, 100)],
+            asks=ASKS,
+        ),
+    ]
+    s = build_session(rows)
+    assert s.state_before_group.tolist() == [-1, 0, 0, 2]
+    # a fill at the sweep's timestamp is classified by the state before the sweep, not by the sweep's end
+    state_ts = s.ts[s.last_in_group]
+    assert state_index_before(state_ts, s.ts[[2]]).tolist() == [0]

@@ -138,7 +138,11 @@ class BacktestEngine:
     # ------------------------------------------------------------------ fills
     def _on_fill(self, f: Fill) -> None:
         self.ledger.apply_fill(f)
-        row = max(self.ex.last_row - (1 if f.row >= 0 else 0), 0)
+        # quote prevailing before the aggressor arrived: for a maker fill, the observable state before the
+        # fill's timestamp group (mid-sweep rows are already partly consumed); taker fills happen at arrival,
+        # between groups, against the last processed (observable) state
+        row = int(self.s.state_before_group[f.row]) if f.row >= 0 else self.ex.last_row
+        row = max(row, 0)
         mid_before = float(self.s.mid_ticks[row]) if math.isfinite(self.s.mid_ticks[row]) else math.nan
         o = self.orders[f.order_id]
         self.fill_rows.append(

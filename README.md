@@ -10,12 +10,38 @@ This is not a price-prediction toy or a bot that claims to beat the market. It i
 historical-replay simulator with a queue-aware execution model, causal features, leakage-controlled models,
 exact accounting, and a pre-declared evaluation protocol whose verdicts are allowed to come out negative.
 
-> **Status.** Everything below is implemented and tested (≈80 tests). The development sandbox could not
-> reach lobsterdata.com, so **all results so far are on the project's synthetic market** and are labelled as
-> such. They validate the machinery; they are not evidence about real markets. Running the identical
-> protocol on the free LOBSTER sample takes the two steps under [Data](#data).
+> **Status.** Everything below is implemented and tested (≈85 tests). The protocol has been run on one real
+> trading day (LOBSTER MSFT, 2012-06-21) and on the project's synthetic market. One day of real data is a
+> first look, not evidence of a durable edge.
 
-## Results so far (synthetic market, 4 held-out 27.5-minute sessions)
+## Real data: MSFT, 21 June 2012 (one session)
+
+Validation: all 665,148 book-changing messages reconciled against LOBSTER's snapshots with zero discrepancies.
+Models and parameters were fit on 09:45–12:45 and 12:45–13:57; the held-out test is 13:57–15:45. The day was a
+sharp sell-off (mid −83.5 ticks, about −2.8%).
+
+| strategy (net P&L after fees, inventory liquidated) | net P&L | 95% CI | fills | mean abs inventory |
+|---|---|---|---|---|
+| A fixed spread: validation chose one tick *behind* the touch, so it never filled | $0.00 | — | 0 | 0 sh |
+| B inventory-aware: joins the touch | −$62.66 | [−$137, $5] | 648 | 157 sh |
+| C alpha-aware (B + model alpha) | **+$47.10** | [−$13, $107] | 310 | 176 sh |
+| D regime rules | +$44.38 | [−$20, $111] | 395 | 164 sh |
+
+* **Joining the touch on MSFT loses money.** B's fills realize −0.32 ticks after 30 s: adverse selection
+  exceeds the half-spread, and the $0.002 rebate doesn't cover it. On validation, quoting at the touch lost for A
+  as well, which is why the protocol picked A's do-nothing variant.
+* **The signal is real out of sample:** log-loss gain over a constant forecast 0.21 nats [0.20, 0.23],
+  directional AUC 0.88. Unlike in the synthetic market, order flow adds information beyond the book (dropping
+  all flow features worsens test log loss by 0.008).
+* **Its value is as an adverse-selection filter.** C − B = +$1.02 per minute [$0.32, $1.76]: C takes half as
+  many fills and its realized spread improves from −0.32 to −0.02 ticks. The placebo alpha loses more than no
+  alpha (−$78 vs −$63), so the gain comes from information.
+* **But it does not beat not trading.** C vs A is +$0.44 per minute [−$0.12, $1.00]: the main hypothesis (H1)
+  is *not established* on this day. Without the rebate, C loses money (−$12).
+* **Fragile.** Changes in latency, fees or requote throttling move P&L by roughly the width of the confidence
+  interval, so one day cannot separate these effects from noise.
+
+## Synthetic market (4 held-out 27.5-minute sessions)
 
 Full reports: [`reports/results/synthetic_informed_baseline/report.md`](reports/results/synthetic_informed_baseline/report.md)
 (informed order flow) and [`reports/results/synthetic_null_baseline/report.md`](reports/results/synthetic_null_baseline/report.md)
@@ -46,9 +72,11 @@ What the evidence says, mechanically scored (supported = 95% paired block-bootst
   most once per second costs 23–32%. Higher risk aversion (γ ≥ 0.1) puts C below A. Fill assumptions move results
   from −31…−34% (conservative queue) to ×3.4–4.1 (optimistic "fill on touch"), which is why the optimistic preset is
   never used for conclusions.
-* **Adverse selection is visible in the markouts.** A third of the fixed-spread maker's fills happen while the
-  spread is wider than one tick (true ~8% of the time), and those fills realize ≈ 0 ticks after 30 s versus
-  0.24 at one tick: fills cluster right after a price level is consumed by informed flow.
+* **Where the edge comes from.** Fills taken while the prevailing spread was wider than one tick (12% of the
+  fixed-spread maker's fills) earn a full tick of effective spread and keep 0.39 ticks after 30 s. Fills at a
+  one-tick spread keep only 0.14: most of their half-tick is lost to adverse selection. *(An earlier version of
+  this bullet claimed the opposite. That came from a bug, since fixed, that labelled each fill with the book
+  state its own sweep had created.)*
 * **Negative results:** regime rules (D) and GLFT quoting with estimated fill intensity (H5) both did worse
   than simpler strategies; volatility adaptation slightly *lowered* P&L.
 
