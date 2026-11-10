@@ -41,6 +41,33 @@ sharp sell-off (mid −83.5 ticks, about −2.8%).
 * **Fragile.** Changes in latency, fees or requote throttling move P&L by roughly the width of the confidence
   interval, so one day cannot separate these effects from noise.
 
+## Real data: AAPL, 21 June 2012 (negative result, diagnosed)
+
+Same protocol and parameter grids as MSFT. Every strategy lost money on the held-out window:
+
+| strategy | net P&L | 95% CI | fills |
+|---|---|---|---|
+| A fixed spread | −$1,781 | [−$2,915, −$706] | 1,763 |
+| B inventory-aware | −$1,786 | [−$2,727, −$915] | 687 |
+| C alpha-aware | −$2,039 | [−$2,486, −$1,607] | 683 |
+| D regime rules | −$411 | [−$840, −$36] | 12 |
+
+The cause is the parameterization, not the market. Every strategy setting is in ticks and the grids were
+designed for MSFT, where the spread is one tick. AAPL traded near $580 with the same 1-cent tick, so its
+spread is many ticks wide and its volatility measured in ticks is roughly 19× MSFT's.
+
+* **A** quoted 1.5 ticks from the mid, deep inside the spread. It became the best price and was run over by
+  informed flow: −2.2 ticks per fill after 30 s.
+* **B and C** compute an inventory skew of γσ²τ from volatility in ticks, which blew up to tens or hundreds of
+  ticks per 100 shares. The bid ended up pinned one tick under the ask. Their effective half-spread is
+  −2.1 ticks: they were paying most of the spread to dump inventory.
+* **GLFT quoting, with spreads set from the measured fill intensity,** lost only $89 (109 fills): spreads
+  calibrated from data adapt to the instrument; spreads fixed in ticks do not.
+
+The prediction model still beat a constant forecast out of sample (0.13 nats [0.11, 0.16]), but far more
+weakly than on MSFT (directional AUC 0.62 vs 0.88). **Fix in progress:** scale quote distance to the
+prevailing spread and normalize risk aversion by the instrument's volatility.
+
 ## Synthetic market (4 held-out 27.5-minute sessions)
 
 Full reports: [`reports/results/synthetic_informed_baseline/report.md`](reports/results/synthetic_informed_baseline/report.md)

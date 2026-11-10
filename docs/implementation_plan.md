@@ -146,7 +146,8 @@ src/adaptive_market_maker/
 - [x] `lobster_msft.yaml` run locally (results summarized in README; H3 supported, H1 not established)
 - [x] Fixed two analysis-only measurement bugs found while reading the MSFT report: fill-time mid taken
       mid-sweep, and fills classified by the post-fill book state (P&L, fills and realized spreads unaffected)
-- [ ] `lobster_aapl.yaml` (small-tick contrast)
+- [x] `lobster_aapl.yaml` run locally: all strategies lose; diagnosed as tick-denominated parameters (see README)
+- [ ] Instrument-agnostic parameters: spread-relative quoting and volatility-normalized risk aversion
 
 ## 6. Phase notes
 
