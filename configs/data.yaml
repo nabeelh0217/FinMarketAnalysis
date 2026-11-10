@@ -1,0 +1,18 @@
+# Default dataset: the free LOBSTER sample for MSFT (large-tick; see docs/implementation_plan.md §1).
+# Download: https://data.lobsterdata.com/info/DataSamples.php  -> unzip into data/raw/lobster/
+data:
+  source: lobster
+  dataset_id: lobster_msft_2012-06-21_l10
+  raw_dir: data/raw/lobster
+  levels: 10
+  price_scale: 10000        # LOBSTER prices are dollars x 10000
+  tick_size: 100            # $0.01 in price units
+  lot_size: 100
+  open_time: "09:30:00"
+  close_time: "16:00:00"
+  max_gap_warning_s: 30
+  license_note: >-
+    LOBSTER free sample files; see lobsterdata.com terms of use. Raw files are not redistributed
+    with this repository.
+  sessions:
+    - {ticker: MSFT, date: "2012-06-21", start_ms: 34200000, end_ms: 57600000}

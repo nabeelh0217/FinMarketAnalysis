@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adaptive-market-maker"
+version = "0.1.0"
+description = "Research platform testing whether alpha- and inventory-aware market making survives realistic historical-replay execution assumptions."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26,<3",
+    "pandas>=2.1,<4",
+    "pyarrow>=14",
+    "scipy>=1.11,<2",
+    "scikit-learn>=1.4,<2",
+    "matplotlib>=3.8,<4",
+    "pyyaml>=6,<7",
+    "pydantic>=2.5,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "hypothesis>=6.100",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+amm = "adaptive_market_maker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
+markers = [
+    "slow: longer end-to-end tests",
+    "needs_lobster: requires the real LOBSTER sample files in data/raw/lobster",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY", "SIM"]
+ignore = ["E501", "B905", "SIM108"]

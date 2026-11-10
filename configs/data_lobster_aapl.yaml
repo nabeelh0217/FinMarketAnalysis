@@ -1,0 +1,14 @@
+# Small-tick contrast (AAPL ~ $580 in 2012: spreads of many ticks, short queues).
+data:
+  source: lobster
+  dataset_id: lobster_aapl_2012-06-21_l10
+  raw_dir: data/raw/lobster
+  levels: 10
+  price_scale: 10000
+  tick_size: 100
+  lot_size: 100
+  open_time: "09:30:00"
+  close_time: "16:00:00"
+  license_note: LOBSTER free sample files; see lobsterdata.com terms of use.
+  sessions:
+    - {ticker: AAPL, date: "2012-06-21", start_ms: 34200000, end_ms: 57600000}

@@ -1,0 +1,28 @@
+models:
+  labels:
+    kind: time                    # time | event
+    horizon_ms: 1000              # as-of mid 1 s ahead
+    horizon_events: 10
+    classes: ternary              # down / flat / up
+    flat_threshold_ticks: 0.0
+  splits:                         # default for one LOBSTER session: intraday chronological split
+    mode: intraday
+    train_frac: 0.5
+    val_frac: 0.2
+    embargo_s: 30
+    exclude_open_s: 900           # skip opening dynamics (first 15 min)
+    exclude_close_s: 900
+  fill_model:
+    horizon_s: 10
+    n_shadow_orders: 4000
+    seed: 11
+  candidates: [prior, logistic, hgb]
+  logistic_C: 0.5
+  hgb_max_iter: 150
+  hgb_learning_rate: 0.05
+  hgb_max_leaf_nodes: 15
+  hgb_min_samples_leaf: 200
+  calibrate: true
+  eval_stride: non_overlapping
+  max_train_samples: 200000
+  seed: 0

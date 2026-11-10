@@ -1,0 +1,8 @@
+features:
+  depth_levels: [1, 3, 5, 10]     # multi-level imbalance depths
+  depth_weights: uniform          # uniform | linear_decay | exp_decay
+  event_windows: [10, 50, 200]    # in observable book states
+  time_windows_s: [1, 5, 30]      # clock-time windows
+  vol_window_s: 30                # realized-vol window feeding the strategies
+  vol_floor_ticks_per_sqrt_s: 0.01
+  warmup_s: 60                    # states earlier than this after the first message are not used

@@ -1,0 +1,22 @@
+# All values are ILLUSTRATIVE assumptions, not measured latencies or a verified fee schedule.
+execution:
+  fill_preset: central            # conservative | central | optimistic
+  conservative_extra_queue_frac: 0.0
+  post_only: true
+  latency:
+    market_data_us: 250
+    decision_us: 20
+    order_entry_us: 250
+    report_us: 250
+  fees:
+    maker_per_share: -0.0020      # rebate for adding liquidity
+    taker_per_share: 0.0030
+backtest:
+  flatten_before_end_s: 30
+  equity_interval_s: 1.0
+  decision_min_interval_ms: 0
+  markout_horizons_ms: [100, 1000, 5000, 30000]
+  bootstrap_block_s: 60
+  bootstrap_blocks_per_draw: 3
+  n_bootstrap: 2000
+  seed: 0

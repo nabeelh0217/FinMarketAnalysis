@@ -1,0 +1,499 @@
+phase,strategy,session_id,role,params,net_pnl,net_pnl_mid,n_fills,mean_abs_inventory,max_drawdown,fees_net
+validation,fixed_spread,SYNTH_2099-01-09,val,"{""half_spread_ticks"": 0.5}",471.4,471.4,1251,245.85099939430648,24.399999999999977,-249.4
+validation,fixed_spread,SYNTH_2099-01-12,val,"{""half_spread_ticks"": 0.5}",420.9,420.9,1242,273.28891580860085,15.0,-247.9
+validation,fixed_spread,SYNTH_2099-01-09,val,"{""half_spread_ticks"": 1.5}",134.0,134.0,70,174.6214415505754,13.0,-14.0
+validation,fixed_spread,SYNTH_2099-01-12,val,"{""half_spread_ticks"": 1.5}",79.9,79.9,72,202.05935796486978,28.1,-13.9
+validation,inventory_aware,SYNTH_2099-01-09,val,"{""gamma"": 0.02}",467.2,467.2,1585,98.84918231374924,12.900000000000034,-316.2
+validation,inventory_aware,SYNTH_2099-01-12,val,"{""gamma"": 0.02}",433.0,433.0,1589,117.80738946093277,9.600000000000023,-317.0
+validation,inventory_aware,SYNTH_2099-01-09,val,"{""gamma"": 0.1}",353.1,353.1,1278,52.39248940036342,8.800000000000011,-255.1
+validation,inventory_aware,SYNTH_2099-01-12,val,"{""gamma"": 0.1}",353.5,353.5,1330,54.391278013325255,5.200000000000017,-265.5
+validation,inventory_aware,SYNTH_2099-01-09,val,"{""gamma"": 0.3}",345.7,345.7,1206,45.669291338582674,5.800000000000011,-240.7
+validation,inventory_aware,SYNTH_2099-01-12,val,"{""gamma"": 0.3}",341.9,341.9,1272,46.51726226529376,3.700000000000001,-253.9
+validation,adaptive,SYNTH_2099-01-09,val,"{""alpha_guard_ticks"": 0.15}",336.4,336.4,851,141.00545124167172,19.899999999999977,-169.4
+validation,adaptive,SYNTH_2099-01-12,val,"{""alpha_guard_ticks"": 0.15}",406.7,406.7,896,124.04603270745002,6.300000000000011,-178.7
+validation,adaptive,SYNTH_2099-01-09,val,"{""alpha_guard_ticks"": 0.3}",458.4,458.4,1261,116.95941853422168,15.800000000000011,-251.4
+validation,adaptive,SYNTH_2099-01-12,val,"{""alpha_guard_ticks"": 0.3}",504.5,504.5,1300,109.8122350090854,9.099999999999994,-259.5
+validation,adaptive,SYNTH_2099-01-09,val,"{""alpha_guard_ticks"": null}",516.4,516.4,1641,100.66626287098728,15.0,-327.4
+validation,adaptive,SYNTH_2099-01-12,val,"{""alpha_guard_ticks"": null}",514.0,514.0,1689,101.33252574197456,9.099999999999994,-337.0
+validation,regime,SYNTH_2099-01-09,val,{},411.8,411.8,1073,120.04845548152635,16.80000000000001,-213.8
+validation,regime,SYNTH_2099-01-12,val,{},455.9,455.9,1092,116.23258631132647,6.6000000000000005,-217.9
+test,fixed_spread,SYNTH_2099-01-13,test,selected,467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+test,fixed_spread,SYNTH_2099-01-14,test,selected,532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+test,fixed_spread,SYNTH_2099-01-15,test,selected,440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+test,fixed_spread,SYNTH_2099-01-16,test,selected,442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+test,inventory_aware,SYNTH_2099-01-13,test,selected,498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+test,inventory_aware,SYNTH_2099-01-14,test,selected,505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+test,inventory_aware,SYNTH_2099-01-15,test,selected,471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+test,inventory_aware,SYNTH_2099-01-16,test,selected,494.4,494.4,1621,95.51786795881284,13.5,-323.4
+test,adaptive,SYNTH_2099-01-13,test,selected,599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+test,adaptive,SYNTH_2099-01-14,test,selected,562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+test,adaptive,SYNTH_2099-01-15,test,selected,568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+test,adaptive,SYNTH_2099-01-16,test,selected,551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+test,regime,SYNTH_2099-01-13,test,selected,494.1,494.1,1188,121.44155057540884,4.600000000000023,-237.1
+test,regime,SYNTH_2099-01-14,test,selected,454.1,454.1,1108,114.96062992125984,9.299999999999997,-221.1
+test,regime,SYNTH_2099-01-15,test,selected,506.1,506.1,1148,116.89884918231375,6.599999999999966,-229.1
+test,regime,SYNTH_2099-01-16,test,selected,447.5,447.5,1118,129.67898243488796,8.5,-222.5
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 0}",469.0,469.0,1297,236.15990308903696,17.299999999999997,-258.0
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 0}",528.7,528.7,1326,221.8655360387644,18.899999999999977,-264.7
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 0}",443.8,443.8,1273,279.3458509993943,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 0}",442.1,442.1,1258,252.2107813446396,21.19999999999999,-251.1
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 0}",501.0,501.0,1700,95.94185342216838,9.799999999999997,-340.0
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 0}",507.1,507.1,1678,97.57722592368262,11.200000000000003,-335.1
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 0}",472.8,472.8,1693,104.42156268927923,15.100000000000023,-337.8
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 0}",494.8,494.8,1623,95.76014536644458,13.5,-323.8
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 0}",601.6,601.6,1818,95.4572986069049,4.299999999999997,-363.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 0}",565.3,565.3,1774,89.21865536038764,5.6000000000000085,-354.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 0}",570.5,570.5,1750,88.67353119321623,4.700000000000003,-349.5
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 0}",551.7,551.7,1676,105.87522713506965,8.699999999999932,-334.7
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 100}",467.0,467.0,1297,237.91641429436706,17.299999999999997,-258.0
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 100}",528.7,528.7,1326,221.8655360387644,18.899999999999977,-264.7
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 100}",443.8,443.8,1273,279.3458509993943,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 100}",442.1,442.1,1258,252.2107813446396,21.19999999999999,-251.1
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 100}",500.4,500.4,1702,95.88128407026045,9.799999999999997,-340.4
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 100}",507.1,507.1,1678,97.57722592368262,11.200000000000003,-335.1
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 100}",472.8,472.8,1693,104.48213204118716,15.100000000000023,-337.8
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 100}",493.8,493.8,1623,95.15445184736524,13.5,-323.8
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 100}",600.6,600.6,1818,95.2755905511811,4.299999999999997,-363.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 100}",563.9,563.9,1772,89.40036341611145,5.6000000000000085,-353.9
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 100}",568.3,568.3,1744,89.33979406420352,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 100}",550.1,550.1,1678,106.54149000605693,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 250}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 250}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 250}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 250}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 250}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 250}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 250}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 250}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 250}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 250}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 250}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 250}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 1000}",468.8,468.8,1301,243.73107207752878,17.300000000000004,-258.8
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 1000}",532.9,532.9,1322,228.52816474863718,18.900000000000034,-263.9
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 1000}",436.2,436.2,1275,276.13567534827376,23.30000000000001,-254.2
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 1000}",441.5,441.5,1260,251.54451847365235,21.19999999999999,-251.5
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 1000}",498.0,498.0,1690,96.60811629315566,9.799999999999997,-338.0
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 1000}",505.5,505.5,1670,96.18413082980013,11.199999999999989,-333.5
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 1000}",474.0,474.0,1689,105.99636583888552,15.100000000000023,-337.0
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 1000}",486.8,486.8,1613,97.81950333131435,13.5,-321.8
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 1000}",599.2,599.2,1806,92.85281647486372,3.6000000000000227,-361.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 1000}",561.1,561.1,1768,87.88612961841308,4.900000000000006,-353.1
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 1000}",571.9,571.9,1742,89.70321017565112,4.699999999999989,-347.9
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 1000}",548.7,548.7,1666,106.2992125984252,9.099999999999909,-332.7
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 5000}",460.0,460.0,1287,244.457904300424,17.300000000000004,-256.0
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 5000}",523.1,523.1,1318,219.442761962447,18.900000000000006,-263.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 5000}",428.6,428.6,1267,276.4990914597214,23.30000000000001,-252.6
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 5000}",453.5,453.5,1260,239.7334948516051,21.69999999999999,-251.5
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 5000}",485.8,485.8,1674,97.63779527559055,9.800000000000011,-334.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 5000}",492.9,492.9,1642,103.75529981829195,11.200000000000017,-327.9
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 5000}",469.6,469.6,1667,105.26953361599031,15.099999999999966,-332.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 5000}",473.0,473.0,1599,104.9061175045427,13.5,-319.0
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 5000}",585.8,585.8,1764,89.824348879467,4.199999999999996,-352.8
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 5000}",553.5,553.5,1730,93.39794064203512,4.900000000000006,-345.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 5000}",566.1,566.1,1708,88.97637795275591,6.2000000000000455,-341.1
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 5000}",554.9,554.9,1652,105.20896426408237,9.100000000000023,-329.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""latency_us"": 20000}",467.9,467.9,1290,239.49121744397334,16.3,-256.9
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""latency_us"": 20000}",489.2,489.2,1303,225.0757116898849,16.19999999999999,-259.2
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""latency_us"": 20000}",405.0,405.0,1239,271.5324046032707,19.900000000000034,-247.0
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""latency_us"": 20000}",432.3,432.3,1244,241.73228346456693,25.5,-248.3
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""latency_us"": 20000}",471.5,471.5,1600,106.23864324651726,11.599999999999994,-319.5
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""latency_us"": 20000}",463.0,463.0,1530,108.54027861901878,11.199999999999989,-306.0
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""latency_us"": 20000}",423.4,423.4,1561,126.16596002422774,15.800000000000011,-311.4
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""latency_us"": 20000}",457.4,457.4,1521,116.77771047849788,15.899999999999977,-303.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""latency_us"": 20000}",542.4,542.4,1602,94.73046638400969,4.199999999999996,-320.4
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""latency_us"": 20000}",509.8,509.8,1573,99.69715324046032,11.5,-313.8
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""latency_us"": 20000}",508.1,508.1,1538,98.18291944276196,6.199999999999989,-307.1
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""latency_us"": 20000}",528.7,528.7,1516,101.02967898243489,13.199999999999989,-302.7
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.003}",597.2,597.2,1299,238.7038158691702,16.200000000000003,-388.2
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.003}",664.8,664.8,1328,221.3809812235009,18.600000000000023,-397.8
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.003}",568.0,568.0,1273,279.7092671108419,22.199999999999932,-381.0
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.003}",569.0,569.0,1262,251.6656571774682,20.800000000000068,-378.0
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.003}",668.4,668.4,1698,96.6686856450636,8.200000000000003,-509.4
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.003}",673.2,673.2,1676,97.27437916414294,10.800000000000011,-502.2
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.003}",641.2,641.2,1697,105.08782556026651,14.400000000000034,-508.2
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.003}",656.4,656.4,1621,95.51786795881284,13.0,-485.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.003}",780.8,780.8,1816,94.48818897637796,3.4000000000000057,-544.8
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.003}",739.4,739.4,1770,88.91580860084797,5.3999999999999915,-530.4
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.003}",742.6,742.6,1744,89.64264082374319,4.400000000000091,-522.6
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.003}",718.8,718.8,1678,105.99636583888552,7.7999999999999545,-502.8
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.002}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.002}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.002}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.002}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.002}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.002}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.002}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.002}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": -0.002}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": -0.002}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": -0.002}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": -0.002}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.0}",207.8,207.8,1299,238.7038158691702,19.5,1.2
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.0}",266.7,266.7,1328,221.3809812235009,21.0,0.3
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.0}",186.4,186.4,1273,279.7092671108419,26.0,0.6
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.0}",190.7,190.7,1262,251.6656571774682,25.0,0.3
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.0}",159.0,159.0,1698,96.6686856450636,15.0,0.0
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.0}",170.7,170.7,1676,97.27437916414294,12.0,0.3
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.0}",132.4,132.4,1697,105.08782556026651,17.0,0.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.0}",170.4,170.4,1621,95.51786795881284,14.5,0.6
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.0}",236.0,236.0,1816,94.48818897637796,5.0,0.0
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.0}",208.7,208.7,1770,88.91580860084797,7.0,0.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.0}",219.7,219.7,1744,89.64264082374319,6.5,0.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.0}",215.7,215.7,1678,105.99636583888552,10.5,0.3
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.001}",78.0,78.0,1299,238.7038158691702,21.0,131.0
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.001}",134.0,134.0,1328,221.3809812235009,25.4,133.0
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.001}",59.2,59.2,1273,279.7092671108419,36.00000000000001,127.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.001}",64.6,64.6,1262,251.6656571774682,33.599999999999994,126.4
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.001}",-10.8,-10.8,1698,96.6686856450636,44.4,169.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.001}",3.2,3.2,1676,97.27437916414294,20.4,167.8
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.001}",-37.2,-37.2,1697,105.08782556026651,53.0,170.2
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.001}",8.4,8.4,1621,95.51786795881284,26.8,162.6
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fees.maker_per_share"": 0.001}",54.4,54.4,1816,94.48818897637796,21.2,181.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fees.maker_per_share"": 0.001}",31.8,31.8,1770,88.91580860084797,11.8,177.2
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fees.maker_per_share"": 0.001}",45.4,45.4,1744,89.64264082374319,18.6,174.6
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fees.maker_per_share"": 0.001}",48.0,48.0,1678,105.99636583888552,20.6,168.0
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""conservative""}",303.4,303.4,1019,257.2380375529982,19.4,-202.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""conservative""}",375.3,375.3,1052,232.82858873410055,20.0,-209.3
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""conservative""}",284.4,284.4,1011,287.46214415505756,20.600000000000023,-201.4
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""conservative""}",284.6,284.6,1007,255.90551181102362,23.400000000000034,-200.6
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""conservative""}",339.8,339.8,1224,140.70260448213205,10.299999999999997,-244.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""conservative""}",375.4,375.4,1202,130.76923076923077,9.900000000000006,-240.4
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""conservative""}",285.4,285.4,1191,153.96729254996973,15.5,-237.4
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""conservative""}",353.8,353.8,1173,144.457904300424,15.100000000000023,-233.8
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""conservative""}",413.6,413.6,1168,101.21138703815869,7.600000000000001,-233.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""conservative""}",415.8,415.8,1164,105.20896426408237,6.0,-232.8
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""conservative""}",353.4,353.4,1142,113.68867353119322,8.700000000000017,-228.4
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""conservative""}",378.7,378.7,1116,114.3549364021805,12.800000000000011,-222.7
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""central""}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""central""}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""central""}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""central""}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""central""}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""central""}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""central""}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""central""}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""central""}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""central""}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""central""}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""central""}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""optimistic""}",1900.8,1900.8,3973,312.35614778921865,13.600000000000023,-793.8
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""optimistic""}",1868.0,1868.0,3900,317.5045427013931,15.0,-780.0
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""optimistic""}",1951.7,1951.7,3973,310.41792852816474,14.299999999999955,-792.7
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""optimistic""}",1964.1,1964.1,3884,313.3252574197456,19.40000000000009,-775.1
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""optimistic""}",1793.9,1793.9,4142,215.9297395517868,13.200000000000045,-827.9
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""optimistic""}",1782.7,1782.7,4006,219.20048455481526,11.899999999999977,-800.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""optimistic""}",1854.3,1854.3,4162,214.23379769836464,14.299999999999955,-831.3
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""optimistic""}",1852.6,1852.6,4037,231.43549364021806,19.40000000000009,-806.6
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""execution.fill_preset"": ""optimistic""}",1946.6,1946.6,4048,198.4251968503937,11.200000000000045,-809.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""execution.fill_preset"": ""optimistic""}",1871.3,1871.3,3924,201.2113870381587,10.599999999999966,-784.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""execution.fill_preset"": ""optimistic""}",2006.8,2006.8,4053,187.7649909145972,14.299999999999955,-809.8
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""execution.fill_preset"": ""optimistic""}",1955.4,1955.4,3901,214.17322834645668,18.40000000000009,-779.4
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 100}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 100}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 100}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 100}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 100}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 100}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 100}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 100}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 100}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 100}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 100}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 100}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 200}",624.7,624.7,1587,254.27013930950937,14.299999999999997,-341.7
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 200}",712.6,712.6,1612,261.2961841308298,18.899999999999977,-351.6
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 200}",567.5,567.5,1544,280.6783767413689,17.900000000000034,-333.5
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 200}",655.2,655.2,1597,244.94245911568746,20.100000000000023,-343.2
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 200}",657.6,657.6,2037,130.8298001211387,9.400000000000034,-445.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 200}",674.6,674.6,2013,130.34524530587524,11.900000000000006,-444.6
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 200}",647.8,647.8,2029,135.7359176256814,14.399999999999977,-443.8
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 200}",655.5,655.5,1983,141.671714112659,12.799999999999955,-433.5
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 200}",788.6,788.6,2105,117.44397334948516,6.299999999999997,-463.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 200}",732.3,732.3,2049,116.41429436705027,9.300000000000011,-450.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 200}",729.1,729.1,2006,114.11265899454875,8.299999999999955,-443.1
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 200}",708.6,708.6,1929,136.5838885523925,11.400000000000091,-419.6
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 300}",757.1,757.1,1818,255.29981829194426,14.299999999999997,-410.1
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 300}",862.4,862.4,1841,260.9933373712901,18.899999999999977,-420.4
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 300}",748.0,748.0,1790,278.49788007268324,17.899999999999977,-408.0
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 300}",805.1,805.1,1868,247.18352513628105,18.600000000000023,-418.1
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 300}",773.2,773.2,2296,151.78679588128406,7.899999999999977,-539.2
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 300}",806.4,806.4,2257,150.87825560266506,12.800000000000011,-535.4
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 300}",793.4,793.4,2273,158.20714718352514,12.199999999999989,-534.4
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 300}",825.2,825.2,2249,157.54088431253786,14.799999999999955,-523.2
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.quote_size"": 300}",927.6,927.6,2328,141.12658994548758,7.199999999999996,-553.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.quote_size"": 300}",824.9,824.9,2195,142.580254391278,8.0,-522.9
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.quote_size"": 300}",816.3,816.3,2190,138.21926105390673,10.299999999999955,-524.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.quote_size"": 300}",889.9,889.9,2204,150.938824954573,10.5,-519.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 200}",405.7,405.7,1106,107.38946093276802,6.0,-220.7
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 200}",454.2,454.2,1146,105.39067231980617,6.899999999999977,-229.2
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 200}",427.3,427.3,1104,112.65899454875833,6.699999999999989,-220.3
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 200}",435.6,435.6,1127,101.87764990914597,7.899999999999977,-224.6
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 200}",490.6,490.6,1598,76.74136886735312,3.900000000000002,-319.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 200}",482.3,482.3,1584,70.26044821320411,4.900000000000006,-316.3
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 200}",478.3,478.3,1584,74.74258025439127,7.299999999999997,-316.3
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 200}",481.2,481.2,1515,71.95639006662628,6.600000000000023,-302.2
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 200}",562.2,562.2,1756,80.37552998182919,3.6000000000000227,-351.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 200}",544.6,544.6,1718,76.55966081162931,4.900000000000006,-343.6
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 200}",549.3,549.3,1694,78.55844942459116,5.299999999999997,-338.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 200}",544.9,544.9,1612,82.3137492428831,6.599999999999966,-321.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 500}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 500}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 500}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 500}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 500}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 500}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 500}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 500}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 500}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 500}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 500}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 500}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 1000}",443.9,443.9,1336,447.72864930345247,37.900000000000006,-264.9
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 1000}",515.4,515.4,1387,511.7504542701393,46.30000000000001,-275.4
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 1000}",436.5,436.5,1344,517.0805572380375,72.5,-266.5
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 1000}",486.8,486.8,1329,486.25075711689885,40.700000000000045,-263.8
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 1000}",498.6,498.6,1698,96.54754694124773,10.100000000000009,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 1000}",503.5,503.5,1680,100.12113870381587,9.5,-335.5
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 1000}",475.0,475.0,1699,107.20775287704421,15.099999999999966,-339.0
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 1000}",491.0,491.0,1629,97.69836462749849,14.100000000000023,-325.0
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.risk.max_inventory"": 1000}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.risk.max_inventory"": 1000}",562.9,562.9,1772,89.46093276801938,5.699999999999989,-353.9
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.risk.max_inventory"": 1000}",569.3,569.3,1744,89.58207147183525,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.risk.max_inventory"": 1000}",551.7,551.7,1676,108.78255602665051,8.699999999999932,-334.7
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.02}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.02}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.02}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.02}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.02}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.02}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.02}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.02}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.02}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.02}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.02}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.02}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.1}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.1}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.1}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.1}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.1}",390.8,390.8,1364,49.969715324046035,4.599999999999994,-272.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.1}",385.9,385.9,1382,51.05996365838885,7.0,-275.9
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.1}",393.8,393.8,1344,47.365233192004844,4.600000000000023,-268.8
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.1}",394.1,394.1,1318,50.15142337976984,6.5,-263.1
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.1}",457.4,457.4,1622,53.90672319806178,3.1999999999999886,-324.4
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.1}",438.3,438.3,1614,52.695336159903086,5.199999999999989,-322.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.1}",440.8,440.8,1594,49.24288310115082,5.0,-318.8
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.1}",442.5,442.5,1530,52.99818291944276,4.7999999999999545,-305.5
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.3}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.3}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.3}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.3}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.3}",383.2,383.2,1326,44.70018170805572,4.600000000000001,-265.2
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.3}",372.3,372.3,1314,42.701393095093884,7.0,-262.3
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.3}",379.4,379.4,1302,41.247728649303454,7.900000000000006,-260.4
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.3}",381.9,381.9,1272,42.701393095093884,4.5,-253.9
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 0.3}",434.0,434.0,1620,50.39370078740158,4.099999999999994,-324.0
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 0.3}",422.9,422.9,1582,49.18231374924288,5.900000000000006,-315.9
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 0.3}",425.4,425.4,1582,47.789218655360386,4.600000000000023,-316.4
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 0.3}",424.5,424.5,1500,49.969715324046035,4.199999999999989,-299.5
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 1.0}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 1.0}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 1.0}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 1.0}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 1.0}",377.8,377.8,1324,44.51847365233192,4.599999999999994,-264.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 1.0}",368.1,368.1,1328,42.15626892792247,7.599999999999994,-265.1
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 1.0}",378.2,378.2,1306,41.308298001211384,5.300000000000011,-261.2
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 1.0}",381.9,381.9,1282,41.671714112659,4.5,-255.9
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.gamma"": 1.0}",432.6,432.6,1628,50.45427013930951,3.700000000000003,-325.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.gamma"": 1.0}",424.5,424.5,1620,49.42459115687462,6.5,-323.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.gamma"": 1.0}",422.4,422.4,1592,48.39491217443973,6.599999999999994,-318.4
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.gamma"": 1.0}",419.9,419.9,1512,49.42459115687462,4.0,-301.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 10}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 10}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 10}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 10}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 10}",492.4,492.4,1692,98.36462749848576,10.5,-338.4
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 10}",488.3,488.3,1674,104.9061175045427,11.200000000000017,-334.3
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 10}",468.6,468.6,1707,104.78497880072683,15.099999999999966,-340.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 10}",474.5,474.5,1630,101.51423379769837,12.800000000000011,-325.5
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 10}",582.4,582.4,1812,102.78619018776499,9.2,-362.4
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 10}",543.0,543.0,1780,99.57601453664446,7.300000000000011,-356.0
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 10}",548.8,548.8,1763,93.519079345851,6.999999999999986,-351.8
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 10}",531.3,531.3,1684,105.81465778316172,11.800000000000011,-336.3
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 30}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 30}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 30}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 30}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 30}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 30}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 30}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 30}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 30}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 30}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 30}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 30}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 120}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 120}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 120}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 120}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 120}",516.0,516.0,1710,100.12113870381587,6.199999999999989,-342.0
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 120}",522.5,522.5,1690,93.09509388249546,10.599999999999994,-337.5
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 120}",498.0,498.0,1689,100.54512416717141,11.099999999999994,-337.0
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 120}",507.9,507.9,1622,94.12477286493035,12.800000000000011,-323.9
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""features.vol_window_s"": 120}",608.1,608.1,1828,89.03694730466384,3.6000000000000227,-365.1
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""features.vol_window_s"": 120}",584.8,584.8,1774,81.82919442761963,5.299999999999997,-354.8
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""features.vol_window_s"": 120}",582.7,582.7,1736,88.31011508176863,9.899999999999991,-346.7
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""features.vol_window_s"": 120}",578.3,578.3,1694,97.51665657177467,9.100000000000023,-338.3
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 250}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 250}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 250}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 250}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 250}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 250}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 250}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 250}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 250}",565.6,565.6,1878,95.82071471835252,5.8999999999999915,-375.6
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 250}",542.3,542.3,1854,102.30163537250151,10.599999999999994,-370.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 250}",540.1,540.1,1868,100.24227740763173,10.600000000000023,-373.1
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 250}",534.0,534.0,1759,102.54391278013325,10.5,-351.0
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 1000}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 1000}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 1000}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 1000}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 1000}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 1000}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 1000}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 1000}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 1000}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 1000}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 1000}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 1000}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 5000}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 5000}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 5000}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 5000}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 5000}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 5000}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 5000}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 5000}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""models.labels.horizon_ms"": 5000}",587.9,587.9,1642,94.48818897637796,4.899999999999977,-327.9
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""models.labels.horizon_ms"": 5000}",588.8,588.8,1594,104.60327074500303,9.299999999999997,-318.8
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""models.labels.horizon_ms"": 5000}",579.2,579.2,1615,91.5808600847971,4.7999999999999545,-322.2
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""models.labels.horizon_ms"": 5000}",547.2,547.2,1536,109.02483343428226,6.600000000000023,-307.2
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 0}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 0}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 0}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 0}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 0}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 0}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 0}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 0}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 0}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 0}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 0}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 0}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 100}",465.8,465.8,1291,236.099333737129,16.3,-256.8
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 100}",493.4,493.4,1309,226.16596002422773,16.19999999999999,-260.4
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 100}",418.2,418.2,1255,278.0738946093277,21.599999999999966,-250.2
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 100}",455.1,455.1,1248,272.9254996971532,22.399999999999977,-249.1
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 100}",489.8,489.8,1624,107.26832222895214,11.600000000000009,-324.8
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 100}",486.3,486.3,1574,106.05693519079345,11.200000000000003,-314.3
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 100}",441.0,441.0,1569,122.89521502119928,15.800000000000011,-313.0
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 100}",482.5,482.5,1540,121.80496668685645,12.199999999999989,-307.5
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 100}",548.4,548.4,1642,94.85160508782556,5.0,-328.4
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 100}",541.8,541.8,1613,98.66747425802544,5.899999999999977,-321.8
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 100}",539.9,539.9,1592,96.78982434887946,6.199999999999989,-317.9
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 100}",548.9,548.9,1542,105.45124167171412,7.199999999999989,-307.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 1000}",395.0,395.0,990,230.34524530587524,18.6,-198.0
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 1000}",359.8,359.8,984,251.3022410660206,28.900000000000006,-196.8
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 1000}",337.8,337.8,973,237.37129012719564,19.0,-193.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 1000}",357.0,357.0,949,223.8037552998183,25.5,-189.0
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 1000}",341.6,341.6,1038,147.00181708055723,9.400000000000006,-207.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 1000}",369.8,369.8,1024,132.34403391883706,14.900000000000006,-204.8
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 1000}",328.4,328.4,1012,150.5754088431254,14.5,-202.4
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 1000}",344.9,344.9,1002,143.30708661417322,25.5,-199.9
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""backtest.decision_min_interval_ms"": 1000}",391.2,391.2,1016,121.13870381586916,6.5,-203.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""backtest.decision_min_interval_ms"": 1000}",412.3,412.3,1004,108.11629315566323,9.199999999999989,-200.3
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""backtest.decision_min_interval_ms"": 1000}",360.6,360.6,978,117.74682010902484,10.299999999999983,-195.6
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""backtest.decision_min_interval_ms"": 1000}",385.9,385.9,992,127.98304058146577,22.80000000000001,-197.9
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 0.5}",467.4,467.4,1299,238.7038158691702,17.299999999999997,-258.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 0.5}",532.1,532.1,1328,221.3809812235009,18.899999999999977,-265.1
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 0.5}",440.8,440.8,1273,279.7092671108419,23.30000000000001,-253.8
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 0.5}",442.9,442.9,1262,251.6656571774682,21.19999999999999,-251.9
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 0.5}",498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 0.5}",505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 0.5}",471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 0.5}",494.4,494.4,1621,95.51786795881284,13.5,-323.4
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 0.5}",599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 0.5}",562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 0.5}",568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 0.5}",551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+sensitivity,fixed_spread,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 1.5}",16.4,16.4,52,256.450635978195,50.9,-10.4
+sensitivity,fixed_spread,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 1.5}",2.5,2.5,66,258.57056329497277,62.199999999999996,-11.5
+sensitivity,fixed_spread,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 1.5}",-7.1,-7.1,68,261.9018776499091,65.89999999999999,-11.9
+sensitivity,fixed_spread,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 1.5}",44.5,44.5,68,220.71471835251361,23.400000000000002,-12.5
+sensitivity,inventory_aware,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 1.5}",55.9,55.9,82,72.19866747425803,6.5,-15.9
+sensitivity,inventory_aware,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 1.5}",81.5,81.5,110,50.938824954572986,5.600000000000001,-21.5
+sensitivity,inventory_aware,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 1.5}",50.6,50.6,97,70.7450030284676,9.0,-18.6
+sensitivity,inventory_aware,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 1.5}",72.2,72.2,86,44.70018170805572,7.000000000000001,-17.2
+sensitivity,adaptive,SYNTH_2099-01-13,test,"{""strategies.*.half_spread_ticks"": 1.5}",41.9,41.9,62,62.931556632344034,6.299999999999999,-11.9
+sensitivity,adaptive,SYNTH_2099-01-14,test,"{""strategies.*.half_spread_ticks"": 1.5}",71.7,71.7,86,53.179890975166565,6.5,-16.7
+sensitivity,adaptive,SYNTH_2099-01-15,test,"{""strategies.*.half_spread_ticks"": 1.5}",50.9,50.9,72,41.8534221683828,6.5,-13.9
+sensitivity,adaptive,SYNTH_2099-01-16,test,"{""strategies.*.half_spread_ticks"": 1.5}",75.2,75.2,76,57.41974560872199,7.0,-15.2
+ablation,adaptive,SYNTH_2099-01-13,test,no_alpha,498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+ablation,adaptive,SYNTH_2099-01-14,test,no_alpha,505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+ablation,adaptive,SYNTH_2099-01-15,test,no_alpha,471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+ablation,adaptive,SYNTH_2099-01-16,test,no_alpha,494.4,494.4,1621,95.51786795881284,13.5,-323.4
+ablation,adaptive,SYNTH_2099-01-13,test,placebo_alpha,463.8,463.8,1824,116.23258631132647,8.599999999999994,-364.8
+ablation,adaptive,SYNTH_2099-01-14,test,placebo_alpha,466.1,466.1,1788,105.9357964869776,8.5,-357.1
+ablation,adaptive,SYNTH_2099-01-15,test,placebo_alpha,454.8,454.8,1803,116.53543307086615,8.0,-359.8
+ablation,adaptive,SYNTH_2099-01-16,test,placebo_alpha,472.7,472.7,1716,111.62931556632344,13.5,-342.7
+ablation,adaptive,SYNTH_2099-01-13,test,no_alpha_shift,498.6,498.6,1698,96.6686856450636,9.799999999999997,-339.6
+ablation,adaptive,SYNTH_2099-01-14,test,no_alpha_shift,505.7,505.7,1676,97.27437916414294,11.200000000000003,-334.7
+ablation,adaptive,SYNTH_2099-01-15,test,no_alpha_shift,471.6,471.6,1697,105.08782556026651,15.099999999999966,-338.6
+ablation,adaptive,SYNTH_2099-01-16,test,no_alpha_shift,494.4,494.4,1621,95.51786795881284,13.5,-323.4
+ablation,adaptive,SYNTH_2099-01-13,test,no_alpha_guard,599.2,599.2,1816,94.48818897637796,3.6000000000000227,-363.2
+ablation,adaptive,SYNTH_2099-01-14,test,no_alpha_guard,562.5,562.5,1770,88.91580860084797,5.6000000000000085,-353.5
+ablation,adaptive,SYNTH_2099-01-15,test,no_alpha_guard,568.3,568.3,1744,89.64264082374319,4.700000000000003,-348.3
+ablation,adaptive,SYNTH_2099-01-16,test,no_alpha_guard,551.1,551.1,1678,105.99636583888552,8.700000000000045,-335.1
+ablation,adaptive,SYNTH_2099-01-13,test,no_inventory_skew,629.4,629.4,1781,233.01029678982434,17.400000000000006,-355.4
+ablation,adaptive,SYNTH_2099-01-14,test,no_inventory_skew,611.0,611.0,1780,255.72380375529983,11.099999999999994,-356.0
+ablation,adaptive,SYNTH_2099-01-15,test,no_inventory_skew,602.9,602.9,1740,279.64869775893396,15.400000000000006,-346.9
+ablation,adaptive,SYNTH_2099-01-16,test,no_inventory_skew,563.3,563.3,1702,227.8619018776499,19.69999999999999,-339.3
+ablation,adaptive,SYNTH_2099-01-13,test,no_vol_adaptation,606.9,606.9,1822,94.18534221683828,4.899999999999999,-363.9
+ablation,adaptive,SYNTH_2099-01-14,test,no_vol_adaptation,605.4,605.4,1792,91.64142943670502,6.299999999999997,-358.4
+ablation,adaptive,SYNTH_2099-01-15,test,no_vol_adaptation,585.7,585.7,1736,90.79345850999394,9.900000000000006,-346.7
+ablation,adaptive,SYNTH_2099-01-16,test,no_vol_adaptation,579.3,579.3,1674,95.33615990308904,8.800000000000011,-334.3
+ablation,inventory_aware,SYNTH_2099-01-13,test,fill_aware_glft,458.5,458.5,1310,122.89521502119928,6.300000000000011,-261.5
+ablation,inventory_aware,SYNTH_2099-01-14,test,fill_aware_glft,528.0,528.0,1340,117.74682010902484,6.800000000000011,-268.0
+ablation,inventory_aware,SYNTH_2099-01-15,test,fill_aware_glft,460.1,460.1,1308,134.58509993943065,9.900000000000006,-261.1
+ablation,inventory_aware,SYNTH_2099-01-16,test,fill_aware_glft,473.8,473.8,1303,124.95457298606905,14.899999999999977,-259.8
+ablation,adaptive,SYNTH_2099-01-13,test,drop:book_l1,569.4,569.4,1782,101.81708055723804,4.799999999999983,-356.4
+ablation,adaptive,SYNTH_2099-01-14,test,drop:book_l1,575.7,575.7,1766,97.81950333131435,5.599999999999994,-352.7
+ablation,adaptive,SYNTH_2099-01-15,test,drop:book_l1,567.8,567.8,1744,91.27801332525742,5.099999999999994,-348.8
+ablation,adaptive,SYNTH_2099-01-16,test,drop:book_l1,553.8,553.8,1654,110.29678982434888,6.800000000000011,-330.8
+ablation,adaptive,SYNTH_2099-01-13,test,drop:microprice,611.4,611.4,1812,91.5808600847971,4.199999999999932,-362.4
+ablation,adaptive,SYNTH_2099-01-14,test,drop:microprice,569.4,569.4,1762,89.27922471229557,5.599999999999994,-352.4
+ablation,adaptive,SYNTH_2099-01-15,test,drop:microprice,581.2,581.2,1746,91.27801332525742,4.700000000000003,-349.2
+ablation,adaptive,SYNTH_2099-01-16,test,drop:microprice,563.3,563.3,1684,105.9357964869776,6.800000000000011,-336.3
+ablation,adaptive,SYNTH_2099-01-13,test,drop:multi_level,593.3,593.3,1834,96.12356147789218,4.800000000000004,-366.3
+ablation,adaptive,SYNTH_2099-01-14,test,drop:multi_level,556.8,556.8,1784,89.64264082374319,5.699999999999989,-356.8
+ablation,adaptive,SYNTH_2099-01-15,test,drop:multi_level,559.4,559.4,1772,87.82556026650515,4.900000000000034,-354.4
+ablation,adaptive,SYNTH_2099-01-16,test,drop:multi_level,546.7,546.7,1696,101.81708055723804,8.699999999999932,-338.7
+ablation,adaptive,SYNTH_2099-01-13,test,drop:order_flow,603.2,603.2,1816,91.21744397334949,3.599999999999998,-363.2
+ablation,adaptive,SYNTH_2099-01-14,test,drop:order_flow,556.1,556.1,1768,87.52271350696547,7.599999999999994,-353.1
+ablation,adaptive,SYNTH_2099-01-15,test,drop:order_flow,564.7,564.7,1746,90.30890369473046,4.700000000000003,-348.7
+ablation,adaptive,SYNTH_2099-01-16,test,drop:order_flow,553.1,553.1,1678,106.17807389460933,8.700000000000045,-335.1
+ablation,adaptive,SYNTH_2099-01-13,test,drop:trade_flow,577.1,577.1,1798,96.30526953361598,6.300000000000004,-359.1
+ablation,adaptive,SYNTH_2099-01-14,test,drop:trade_flow,566.4,566.4,1762,90.12719563900666,5.599999999999994,-352.4
+ablation,adaptive,SYNTH_2099-01-15,test,drop:trade_flow,563.6,563.6,1748,88.97637795275591,6.199999999999989,-349.6
+ablation,adaptive,SYNTH_2099-01-16,test,drop:trade_flow,537.1,537.1,1678,106.23864324651726,14.199999999999989,-335.1
+ablation,adaptive,SYNTH_2099-01-13,test,drop:order_flow+trade_flow+activity,578.5,578.5,1810,91.27801332525742,4.400000000000006,-361.5
+ablation,adaptive,SYNTH_2099-01-14,test,drop:order_flow+trade_flow+activity,565.2,565.2,1796,93.57964869775894,7.599999999999994,-359.2
+ablation,adaptive,SYNTH_2099-01-15,test,drop:order_flow+trade_flow+activity,574.0,574.0,1760,93.57964869775894,6.199999999999989,-352.0
+ablation,adaptive,SYNTH_2099-01-16,test,drop:order_flow+trade_flow+activity,547.1,547.1,1678,102.72562083585706,8.700000000000045,-335.1
+ablation,adaptive,SYNTH_2099-01-13,test,drop:price_history,576.5,576.5,1810,90.12719563900666,4.300000000000001,-361.5
+ablation,adaptive,SYNTH_2099-01-14,test,drop:price_history,546.2,546.2,1796,89.27922471229557,7.0,-359.2
+ablation,adaptive,SYNTH_2099-01-15,test,drop:price_history,546.7,546.7,1736,85.03937007874016,5.900000000000034,-346.7
+ablation,adaptive,SYNTH_2099-01-16,test,drop:price_history,548.5,548.5,1700,93.94306480920655,6.599999999999994,-339.5
